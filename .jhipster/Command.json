@@ -1,0 +1,46 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "address",
+            "otherEntityName": "address",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "postman",
+            "otherEntityName": "postman",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "shippingMethod",
+            "otherEntityName": "shippingMethod",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "dateOrder",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "dateTaken",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "dateShipping",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "dateDelivery",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20170408174217",
+    "entityTableName": "command",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no"
+}

@@ -1,0 +1,30 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "postman",
+            "otherEntityName": "postman",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "price",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "rangeLow",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rangeHigh",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20170408174221",
+    "entityTableName": "price_table",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no"
+}

@@ -1,0 +1,84 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myCommandLabel" data-translate="wsLivraisonApp.command.home.createOrEditLabel">Create or edit a Command</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.command.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.command.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="wsLivraisonApp.command.dateOrder" for="field_dateOrder">Date Order</label>
+                <div class="input-group">
+                    <input id="field_dateOrder" type="text" class="form-control" name="dateOrder" datetime-picker="{{dateformat}}" ng-model="vm.command.dateOrder" is-open="vm.datePickerOpenStatus.dateOrder"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateOrder')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="wsLivraisonApp.command.dateTaken" for="field_dateTaken">Date Taken</label>
+                <div class="input-group">
+                    <input id="field_dateTaken" type="text" class="form-control" name="dateTaken" datetime-picker="{{dateformat}}" ng-model="vm.command.dateTaken" is-open="vm.datePickerOpenStatus.dateTaken"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateTaken')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="wsLivraisonApp.command.dateShipping" for="field_dateShipping">Date Shipping</label>
+                <div class="input-group">
+                    <input id="field_dateShipping" type="text" class="form-control" name="dateShipping" datetime-picker="{{dateformat}}" ng-model="vm.command.dateShipping" is-open="vm.datePickerOpenStatus.dateShipping"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateShipping')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="wsLivraisonApp.command.dateDelivery" for="field_dateDelivery">Date Delivery</label>
+                <div class="input-group">
+                    <input id="field_dateDelivery" type="text" class="form-control" name="dateDelivery" datetime-picker="{{dateformat}}" ng-model="vm.command.dateDelivery" is-open="vm.datePickerOpenStatus.dateDelivery"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateDelivery')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="wsLivraisonApp.command.address" for="field_address">Address</label>
+            <select class="form-control" id="field_address" name="address" ng-model="vm.command.addressId" ng-options="address.id as address.id for address in vm.addresses"            >
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="wsLivraisonApp.command.postman" for="field_postman">Postman</label>
+            <select class="form-control" id="field_postman" name="postman" ng-model="vm.command.postmanId" ng-options="postman.id as postman.id for postman in vm.postmen"            >
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="wsLivraisonApp.command.shippingMethod" for="field_shippingMethod">Shipping Method</label>
+            <select class="form-control" id="field_shippingMethod" name="shippingMethod" ng-model="vm.command.shippingMethodId" ng-options="shippingMethod.id as shippingMethod.id for shippingMethod in vm.shippingmethods"            >
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

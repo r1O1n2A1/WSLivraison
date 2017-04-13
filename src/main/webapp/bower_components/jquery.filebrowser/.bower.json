@@ -1,0 +1,38 @@
+{
+  "name": "jquery.filebrowser",
+  "version": "0.2.1",
+  "main": [
+    "js/angular.piechart.js",
+    "css/angular.piechart.css"
+  ],
+  "description": "Angular piechart is a angular component that create svg based piecharts.",
+  "license": "MIT",
+  "ignore": [
+    "examples",
+    "README.in",
+    "bower.in",
+    "Makefile",
+    "Makefile.in",
+    ".gitignore",
+    ".npmignore",
+    "package.in",
+    "package.json",
+    "bin",
+    "version"
+  ],
+  "dependencies": {
+    "angular": "~1.5"
+  },
+  "devDependencies": {},
+  "homepage": "https://github.com/jcubic/angular.piechart",
+  "_release": "0.2.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.2.1",
+    "commit": "74c033579c20928eab659ac748fc2e5d8c858406"
+  },
+  "_source": "https://github.com/jcubic/angular.piechart.git",
+  "_target": "^0.2.1",
+  "_originalSource": "angular.piechart",
+  "_direct": true
+}

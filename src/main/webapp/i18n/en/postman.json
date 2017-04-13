@@ -1,0 +1,25 @@
+{
+    "wsLivraisonApp": {
+        "postman" : {
+            "home": {
+                "title": "Postmen",
+                "createLabel": "Create a new Postman",
+                "createOrEditLabel": "Create or edit a Postman"
+            },
+            "created": "A new Postman is created with identifier {{ param }}",
+            "updated": "A Postman is updated with identifier {{ param }}",
+            "deleted": "A Postman is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Postman {{ id }}?"
+            },
+            "detail": {
+                "title": "Postman"
+            },
+            "label": "Label",
+            "maxPrice": "Max Price",
+            "command": "Command",
+            "priceTables": "Price Tables",
+            "region": "Region"
+        }
+    }
+}

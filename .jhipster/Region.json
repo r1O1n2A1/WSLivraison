@@ -1,0 +1,30 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "postman",
+            "otherEntityName": "postman",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "address",
+            "otherEntityName": "address",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "region"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "department",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20170408174220",
+    "entityTableName": "region",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no"
+}

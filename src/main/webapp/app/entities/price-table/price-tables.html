@@ -1,0 +1,64 @@
+<div>
+    <h2 data-translate="wsLivraisonApp.priceTable.home.title">Price Tables</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="price-table.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="wsLivraisonApp.priceTable.home.createLabel">
+                        Create new Price Table
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="wsLivraisonApp.priceTable.price">Price</span></th>
+                    <th><span data-translate="wsLivraisonApp.priceTable.rangeLow">Range Low</span></th>
+                    <th><span data-translate="wsLivraisonApp.priceTable.rangeHigh">Range High</span></th>
+                    <th><span data-translate="wsLivraisonApp.priceTable.postman">Postman</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="priceTable in vm.priceTables track by priceTable.id">
+                    <td><a ui-sref="price-table-detail({id:priceTable.id})">{{priceTable.id}}</a></td>
+                    <td>{{priceTable.price}}</td>
+                    <td>{{priceTable.rangeLow}}</td>
+                    <td>{{priceTable.rangeHigh}}</td>
+                    <td>
+                        <a ui-sref="postman-detail({id:priceTable.postmanId})">{{priceTable.postmanId}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="price-table-detail({id:priceTable.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="price-table.edit({id:priceTable.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="price-table.delete({id:priceTable.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

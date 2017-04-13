@@ -1,0 +1,22 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "command",
+            "otherEntityName": "command",
+            "otherEntityRelationshipName": "shippingMethod"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "label",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170408174222",
+    "entityTableName": "shipping_method",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no"
+}

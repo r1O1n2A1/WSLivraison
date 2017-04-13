@@ -1,0 +1,78 @@
+
+entity Command {
+    id Integer required,
+
+    dateOrder ZonedDateTime,
+
+    dateTaken ZonedDateTime,
+
+    dateShipping ZonedDateTime,
+
+    dateDelivery ZonedDateTime,
+
+}
+
+entity Address {
+    id Integer required,
+
+    num String,
+
+    address String,
+
+    zipCode String,
+
+    city String,
+
+    country String,
+
+    lattitude Float,
+
+    longitude Float,
+}
+
+entity Postman {
+    id Integer required,
+
+    label String,
+
+    maxPrice String,
+}
+
+entity Region {
+    id Integer required,
+    
+    department Integer,
+
+}
+
+entity PriceTable {
+    id Integer required,
+
+    price Float,
+
+    rangeLow Integer,
+
+    rangeHigh Integer,
+}
+
+entity ShippingMethod {
+    id Integer required,
+
+    label String,
+}
+
+relationship OneToMany {
+Postman{command} to Command,
+Address{command} to Command,
+ShippingMethod{command} to Command,
+Postman{priceTables} to PriceTable,
+Postman{region} to Region
+}
+relationship OneToOne {
+Address{region} to Region
+}
+relationship OneToOne {
+Region{address} to Address
+}
+
+dto * with mapstruct

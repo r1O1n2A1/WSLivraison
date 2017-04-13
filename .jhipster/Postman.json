@@ -1,0 +1,38 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "command",
+            "otherEntityName": "command",
+            "otherEntityRelationshipName": "postman"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "priceTables",
+            "otherEntityName": "priceTable",
+            "otherEntityRelationshipName": "postman"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "region",
+            "otherEntityName": "region",
+            "otherEntityRelationshipName": "postman"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "label",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "maxPrice",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170408174219",
+    "entityTableName": "postman",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no"
+}

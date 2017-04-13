@@ -1,0 +1,50 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPriceTableLabel" data-translate="wsLivraisonApp.priceTable.home.createOrEditLabel">Create or edit a Price Table</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.priceTable.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.priceTable.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="wsLivraisonApp.priceTable.price" for="field_price">Price</label>
+            <input type="number" class="form-control" name="price" id="field_price"
+                    ng-model="vm.priceTable.price"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="wsLivraisonApp.priceTable.rangeLow" for="field_rangeLow">Range Low</label>
+            <input type="number" class="form-control" name="rangeLow" id="field_rangeLow"
+                    ng-model="vm.priceTable.rangeLow"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="wsLivraisonApp.priceTable.rangeHigh" for="field_rangeHigh">Range High</label>
+            <input type="number" class="form-control" name="rangeHigh" id="field_rangeHigh"
+                    ng-model="vm.priceTable.rangeHigh"
+                    />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="wsLivraisonApp.priceTable.postman" for="field_postman">Postman</label>
+            <select class="form-control" id="field_postman" name="postman" ng-model="vm.priceTable.postmanId" ng-options="postman.id as postman.id for postman in vm.postmen"            >
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

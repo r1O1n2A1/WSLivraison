@@ -1,0 +1,237 @@
+<div ng-cloak>
+	<div class="row">
+		<!-- carousel  -->
+		<section class="container-fluid" id="section2">
+			<div class="container v-center">
+				<div class="row top-buffer20">
+					<div class="col-sm-11 text-center">
+						<uib-carousel interval="myInterval"> <uib-slide
+							ng-repeat="slide in vm.slides" active="active" index="$index">
+						<a href="#" class="mask"> <img ng-src="{{slide.src}}"
+							style="margin: auto;" class="img-responsive zoom-img" />
+						</a>
+						<div class="carousel-caption">
+							<h4></h4>
+						</div>
+						</uib-slide> </uib-carousel>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<div class="row top-buffer">
+		<section class="container-fluid" id="section2">
+			<div class="container v-center">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="row">
+							<div class="col-sm-10 text-center">
+								<div class="panel panel-default slideInLeft animate">
+									<div class="panel-heading">
+										<h3>Robust</h3>
+									</div>
+									<div class="panel-body">
+										<p>There is other content and snippets of details or
+											features that can be placed here..</p>
+										<hr>
+										GO
+										<hr>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4 text-center">
+						<div class="row">
+							<div class="col-sm-10 text-center">
+								<div class="panel panel-default slideInUp animate">
+									<div class="panel-heading">
+										<h3>Simple</h3>
+									</div>
+									<div class="panel-body">
+										<p>There is other content and snippets of details or
+											features that can be placed here..</p>
+										<hr>
+										GO
+										<hr>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4 text-center">
+						<div class="row">
+							<div class="col-sm-10 text-center">
+								<div class="panel panel-default slideInRight animate">
+									<div class="panel-heading">
+										<h3>Clean</h3>
+									</div>
+									<div class="panel-body">
+										<p>There is other content and snippets of details or
+											features that can be placed here..</p>
+										<hr>
+										GO
+										<hr>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--/row-->
+				<div class="row">
+					<br>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+
+<!-- adding services -->
+<div class="container">
+	<h2 class="centerMid">SERVICES</h2>
+	<div class="service-in servicesImg">
+		<div class="col-md-4 in-ser">
+			<a href="#" class="mask"> <img src="img/s1.jpg" alt="image"
+				class="img-responsive zoom-img">
+			</a>
+			<div class="number-top">
+				<span class="number">01.</span>
+				<div class="number-in">
+					<h6>
+						<a href="#">Lorem ipsum dolor sit amet</a>
+					</h6>
+					<p>But I must explain to you how all this mistaken idea of
+						denouncing pleasure.</p>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="col-md-4 in-ser">
+			<div class="view effect">
+				<a href="#" class="mask"> <img src="img/s2.jpg" alt="image"
+					class="img-responsive zoom-img">
+				</a>
+			</div>
+			<div class="number-top">
+				<span class="number">02.</span>
+				<div class="number-in">
+					<h6>
+						<a href="#">Lorem ipsum dolor sit amet</a>
+					</h6>
+					<p>But I must explain to you how all this mistaken idea of
+						denouncing pleasure.</p>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="col-md-4 in-ser">
+			<div class="view effect">
+				<a href="#" class="mask"> <img src="img/s3.jpg" alt="image"
+					class="img-responsive zoom-img">
+				</a>
+			</div>
+			<div class="number-top">
+				<span class="number">03.</span>
+				<div class="number-in">
+					<h6>
+						<a href="#">Lorem ipsum dolor sit amet</a>
+					</h6>
+					<p>But I must explain to you how all this mistaken idea of
+						denouncing pleasure.</p>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+
+
+<!-- adding pie chart -->
+<div class="container topBottomMargin">
+	<h1 class="centerMid">Special Offer</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6 col-md-6">
+				<img class="serviceCountdown" src="./img/preview.jpg" alt="logo" />
+			</div>
+			<div class="col-sm-6 col-md-3 hidden-xs">
+				<h3 class="center">
+					Reduced international shipping only for <strong> <span>
+							<b> {{ countDownTimer }}</b>
+					</span> minutes!
+					</strong>
+				</h3>
+			</div>
+			<div class="col-md-3 hidden-xs hidden-sm">
+				<a class="btn btn-primary" href="#orderform">Order
+					Now</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- adding contact -->
+<section id="section4">
+	<div class="container v-center">
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="text-center">Make Contact</h1>
+				<hr>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8 col-md-offset-1">
+				<div class="row form-group">
+					<div class="col-sm-3">
+						<input type="text" class="form-control" id="firstName"
+							name="firstName" placeholder="First Name" required="">
+					</div>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" id="middleName"
+							name="firstName" placeholder="Middle Name" required="">
+					</div>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="lastName"
+							name="lastName" placeholder="Last Name" required="">
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-sm-5">
+						<input type="email" class="form-control" name="email"
+							placeholder="Email" required="">
+					</div>
+					<div class="col-sm-5">
+						<input type="email" class="form-control" name="phone"
+							placeholder="Phone" required="">
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-sm-10">
+						<input type="homepage" class="form-control"
+							placeholder="Website URL" required="">
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-sm-10">
+						<button class="btn btn-default btn-lg pull-right">Contact
+							Us</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 pull-right">
+				<address>
+					<strong>Some LLC</strong><br> 795 Folsom Ave, Suite 600<br>
+					Newport, RI 94107<br> P: (123) 456-7890
+				</address>
+				<address>
+					<strong>Email Us</strong><br> <a href="mailto:#">first.last@example.com</a>
+				</address>
+			</div>
+		</div>
+	</div>
+</section>
+
+</div>

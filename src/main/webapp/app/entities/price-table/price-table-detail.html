@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="wsLivraisonApp.priceTable.detail.title">Price Table</span> {{vm.priceTable.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="wsLivraisonApp.priceTable.price">Price</span></dt>
+        <dd>
+            <span>{{vm.priceTable.price}}</span>
+        </dd>
+        <dt><span data-translate="wsLivraisonApp.priceTable.rangeLow">Range Low</span></dt>
+        <dd>
+            <span>{{vm.priceTable.rangeLow}}</span>
+        </dd>
+        <dt><span data-translate="wsLivraisonApp.priceTable.rangeHigh">Range High</span></dt>
+        <dd>
+            <span>{{vm.priceTable.rangeHigh}}</span>
+        </dd>
+        <dt><span data-translate="wsLivraisonApp.priceTable.postman">Postman</span></dt>
+        <dd>
+            <a ui-sref="postman-detail({id:vm.priceTable.postmanId})">{{vm.priceTable.postmanId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="price-table-detail.edit({id:vm.priceTable.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

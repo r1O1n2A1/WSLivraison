@@ -1,0 +1,22 @@
+{
+    "wsLivraisonApp": {
+        "shippingMethod" : {
+            "home": {
+                "title": "Shipping Methods",
+                "createLabel": "Create a new Shipping Method",
+                "createOrEditLabel": "Create or edit a Shipping Method"
+            },
+            "created": "A new Shipping Method is created with identifier {{ param }}",
+            "updated": "A Shipping Method is updated with identifier {{ param }}",
+            "deleted": "A Shipping Method is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Shipping Method {{ id }}?"
+            },
+            "detail": {
+                "title": "Shipping Method"
+            },
+            "label": "Label",
+            "command": "Command"
+        }
+    }
+}

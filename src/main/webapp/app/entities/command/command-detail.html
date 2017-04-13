@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span data-translate="wsLivraisonApp.command.detail.title">Command</span> {{vm.command.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="wsLivraisonApp.command.dateOrder">Date Order</span></dt>
+        <dd>
+            <span>{{vm.command.dateOrder | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="wsLivraisonApp.command.dateTaken">Date Taken</span></dt>
+        <dd>
+            <span>{{vm.command.dateTaken | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="wsLivraisonApp.command.dateShipping">Date Shipping</span></dt>
+        <dd>
+            <span>{{vm.command.dateShipping | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="wsLivraisonApp.command.dateDelivery">Date Delivery</span></dt>
+        <dd>
+            <span>{{vm.command.dateDelivery | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="wsLivraisonApp.command.address">Address</span></dt>
+        <dd>
+            <a ui-sref="address-detail({id:vm.command.addressId})">{{vm.command.addressId}}</a>
+        </dd>
+        <dt><span data-translate="wsLivraisonApp.command.postman">Postman</span></dt>
+        <dd>
+            <a ui-sref="postman-detail({id:vm.command.postmanId})">{{vm.command.postmanId}}</a>
+        </dd>
+        <dt><span data-translate="wsLivraisonApp.command.shippingMethod">Shipping Method</span></dt>
+        <dd>
+            <a ui-sref="shipping-method-detail({id:vm.command.shippingMethodId})">{{vm.command.shippingMethodId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="command-detail.edit({id:vm.command.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
