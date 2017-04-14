@@ -6,9 +6,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import javax.transaction.Transactional;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import fr.afcepf.atod.shipping.WsLivraisonApp;
+import fr.afcepf.atod.shipping.repository.AddressRepository;
 import fr.afcepf.atod.shipping.repository.CommandRepository;
+import fr.afcepf.atod.shipping.service.mapper.AddressMapper;
 import fr.afcepf.atod.shipping.service.mapper.CommandMapper;
 import fr.afcepf.atod.shipping.web.rest.errors.ExceptionTranslator;
 
@@ -50,26 +52,34 @@ public class WineOrderResouceTest {
 
     @Autowired
     private CommandMapper commandMapper;
+    
+    @Autowired
+    private AddressRepository addressRepository;
+
+    @Autowired
+    private AddressMapper addressdMapper;
 
 	private MockMvc restMockMvc;
 
+	private static String urlWineEncoded 
+		= "XzE6cm9tYW5lJjExMjUwJjJfdG90YWw6MjI1MDFfaWRPcmRlcjo4MjU5Njk2OTZfY3VzdG9tZXI6Um9uYW4mQm9uZCYyJnJ1ZSRkZSRsYSRwYWl4Jkd1aW5nYW1wJkZyYW5jZQ==";
+	
 	@Before
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
 		WineOrderResource wineOrder = new WineOrderResource(commandMapper,
-				commandRepository);
+				commandRepository, addressdMapper, addressRepository);
 		this.restMockMvc = MockMvcBuilders.standaloneSetup(wineOrder)
 				.setCustomArgumentResolvers(pageableArgumentResolver)
 				.setControllerAdvice(exceptionTranslator)
 				.setMessageConverters(jacksonMessageConverter).build();
 	}
-
+	
 	@Test
 	@Transactional
 	public void testIncomingFromSoapWS() throws Exception {
-		String urlWine = "{_1:romane&11250&2_total:22501}";
-		restMockMvc.perform(get("/wine/order/" + urlWine))
-			.andExpect(status().isOk());
+		restMockMvc.perform(get("/wine/order/{infos}", urlWineEncoded))
+			.andExpect(status().is2xxSuccessful());
 		
 	}
 	
