@@ -70,11 +70,11 @@ public class WineOrderResource {
 		if (commandDTO.getId() != null) {
 			return ResponseEntity.created(new URI(SOAP_WS_SHIPPING))
 				.headers(HeaderUtil.createEntityCreationAlert(ConstantsUtiles.CMD_ADDRESS, "validated"))
-				.body("{description: command correctly created}");
+				.body("description:command correctly created, id: " + commandDTO.getId());
 		} else {
 			return ResponseEntity.created(new URI(SOAP_WS_SHIPPING))
 					.headers(HeaderUtil.createEntityCreationAlert(ConstantsUtiles.CMD_ADDRESS, "not-validated"))
-					.body("{description: command could not be created}");
+					.body("{description:command could not be created}");
 		}
 	}
 
