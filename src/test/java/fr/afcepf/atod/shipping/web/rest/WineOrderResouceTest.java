@@ -82,5 +82,13 @@ public class WineOrderResouceTest {
 			.andExpect(status().is2xxSuccessful());
 		
 	}
+	@Test
+	@Transactional
+	public void testIncomingWrongFromSoapWS() throws Exception {
+		restMockMvc.perform(get("/wine/order/{infos}", "ZW1wdHlVUkw="))
+			.andExpect(status().is2xxSuccessful());
+		
+	}
+	
 	
 }

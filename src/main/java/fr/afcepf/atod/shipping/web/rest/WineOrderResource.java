@@ -1,14 +1,8 @@
 package fr.afcepf.atod.shipping.web.rest;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.security.SecureRandom;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -35,6 +29,7 @@ import fr.afcepf.atod.shipping.service.dto.CommandDTO;
 import fr.afcepf.atod.shipping.service.mapper.AddressMapper;
 import fr.afcepf.atod.shipping.service.mapper.CommandMapper;
 import fr.afcepf.atod.shipping.service.util.ConstantsUtiles;
+import fr.afcepf.atod.shipping.service.util.GoogleMapAPI;
 import fr.afcepf.atod.shipping.web.rest.util.HeaderUtil;
 
 @RestController
@@ -67,12 +62,20 @@ public class WineOrderResource {
 		String[] incomingInfos = saveInfoComingSoapWS(decodeIncomingUrl(infos));
 		incomingInfos = ArrayUtils.removeElement(incomingInfos, "");
 		// save command
+		CommandDTO commandDTO = null;
 		if (incomingInfos.length != 0) {
-			saveCommandWithAdress(incomingInfos);
-		}// save address
-		return ResponseEntity.created(new URI(SOAP_WS_SHIPPING))
-				.headers(HeaderUtil.createEntityCreationAlert("Batman Return","ok"))
-				.body("{description: went to ShippingApp@Jhipster}");
+			commandDTO = saveCommandWithAdress(incomingInfos);
+		}
+		
+		if (commandDTO.getId() != null) {
+			return ResponseEntity.created(new URI(SOAP_WS_SHIPPING))
+				.headers(HeaderUtil.createEntityCreationAlert(ConstantsUtiles.CMD_ADDRESS, "validated"))
+				.body("{description: command correctly created}");
+		} else {
+			return ResponseEntity.created(new URI(SOAP_WS_SHIPPING))
+					.headers(HeaderUtil.createEntityCreationAlert(ConstantsUtiles.CMD_ADDRESS, "not-validated"))
+					.body("{description: command could not be created}");
+		}
 	}
 
 	/**
@@ -96,12 +99,17 @@ public class WineOrderResource {
 		return new String(decoded, "UTF-8"); 
 	}
 
-	private CommandDTO saveCommandWithAdress(String[] incomming){
+	/**
+	 * @param incomming array string including
+	 * all parameters from the order
+	 * @return
+	 */
+	private CommandDTO saveCommandWithAdress(String[] incomming) {
 		Command command = new Command();
 		CommandDTO commandDTO = new CommandDTO();
 		Address address = new Address();
 		AddressDTO addressDTO = new AddressDTO();
-		String idOrder = "";
+		String idOrder = ConstantsUtiles.EMPTY_STR;
 		// parsing to find command
 		for (String str: incomming) {
 			if(str.contains(ConstantsUtiles.ID_ORDER)) {
@@ -119,16 +127,23 @@ public class WineOrderResource {
 				setterAddress(arrayAdress, address);
 			}			
 		}
-		while (commandRepository.findOneById(Long.parseLong(idOrder))
-				.isPresent()) {
-			logger.error("command already added to the db...");
-			SecureRandom random = new SecureRandom();
-			idOrder  = Integer.toString(random.nextInt(
-					(ConstantsUtiles.MAX_ID_SECURE - ConstantsUtiles.MIN_ID_SECURE) + 1) 
-					+ ConstantsUtiles.MIN_ID_SECURE);
-		} 
-		command.setAddress(address);
-		command = commandRepository.save(command);
+		if (idOrder != ConstantsUtiles.EMPTY_STR &&
+				commandRepository.findOneById(Long.parseLong(idOrder)).isPresent()) {
+			while (commandRepository.findOneById(Long.parseLong(idOrder))
+					.isPresent()) {
+				logger.error("command already added to the db...");
+				SecureRandom random = new SecureRandom();
+				idOrder  = Integer.toString(random.nextInt(
+						(ConstantsUtiles.MAX_ID_SECURE - ConstantsUtiles.MIN_ID_SECURE) + 1) 
+						+ ConstantsUtiles.MIN_ID_SECURE);
+			} 
+			boolean isAdress = GoogleMapAPI.isExistingAddress(address);
+			if (isAdress) {
+				command.setAddress(address);
+			} 
+			addressRepository.save(address);
+			command = commandRepository.save(command);
+		}
 
 		if (command != null) {
 			commandDTO = commandMapper.commandToCommandDTO(command);
