@@ -34,6 +34,7 @@ import fr.afcepf.atod.shipping.service.dto.AddressDTO;
 import fr.afcepf.atod.shipping.service.dto.CommandDTO;
 import fr.afcepf.atod.shipping.service.mapper.AddressMapper;
 import fr.afcepf.atod.shipping.service.mapper.CommandMapper;
+import fr.afcepf.atod.shipping.service.util.ConstantsUtiles;
 import fr.afcepf.atod.shipping.web.rest.util.HeaderUtil;
 
 @RestController
@@ -46,14 +47,7 @@ public class WineOrderResource {
 	private final CommandMapper commandMapper;
 	private final CommandRepository commandRepository;
 	private final AddressMapper addressMapper;
-	private final AddressRepository addressRepository;
-	private StringBuilder sb = new StringBuilder();
-	public static final String ID_ORDER = "idOrder";
-	public static final String API_KEY 
-	="AIzaSyAgCLfYg4Q-cEhVhpAIyZ_f9BFQuvhEKsI";
-	public  static final int MIN_ID_SECURE = 1000;
-	public static final  int MAX_ID_SECURE = 1000000000;
-
+	private final AddressRepository addressRepository;		
 
 	public WineOrderResource(CommandMapper commandMapper, 
 			CommandRepository commandRepository,
@@ -74,7 +68,7 @@ public class WineOrderResource {
 		incomingInfos = ArrayUtils.removeElement(incomingInfos, "");
 		// save command
 		if (incomingInfos.length != 0) {
-			saveIncommingCommand(incomingInfos);
+			saveCommandWithAdress(incomingInfos);
 		}// save address
 		return ResponseEntity.created(new URI(SOAP_WS_SHIPPING))
 				.headers(HeaderUtil.createEntityCreationAlert("Batman Return","ok"))
@@ -102,36 +96,40 @@ public class WineOrderResource {
 		return new String(decoded, "UTF-8"); 
 	}
 
-	
-	private AddressDTO saveIncomingAddress(String[] incomming) {
-		Address addres = new Address();
-		AddressDTO addressDTO = new AddressDTO();
-		
-		return addressDTO;
-	}
-	
-	private CommandDTO saveIncommingCommand(String[] incomming){
+	private CommandDTO saveCommandWithAdress(String[] incomming){
 		Command command = new Command();
 		CommandDTO commandDTO = new CommandDTO();
+		Address address = new Address();
+		AddressDTO addressDTO = new AddressDTO();
+		String idOrder = "";
 		// parsing to find command
 		for (String str: incomming) {
-			if(str.contains(ID_ORDER)) {
-				String idOrder = str.split(":")[1];
+			if(str.contains(ConstantsUtiles.ID_ORDER)) {
+				idOrder = str.split(":")[1];
 				command.setId(Long.valueOf(idOrder));
 				ZonedDateTime zoneDateTime = ZonedDateTime.ofInstant(
 						new Date().toInstant(),
 						ZoneId.systemDefault());
 				command.setDateOrder(zoneDateTime);
-				while (commandRepository.findOneById(Long.parseLong(idOrder))
-						.isPresent()) {
-					logger.error("command already added to the db...");
-					SecureRandom random = new SecureRandom();
-					idOrder  = Integer.toString(random.nextInt((MAX_ID_SECURE - MIN_ID_SECURE) + 1) 
-							+ MIN_ID_SECURE);
-				} 
-				command = commandRepository.save(command);	
-			}
+
+			} else if (str.contains(ConstantsUtiles.CUSTOMER)) {
+				String[] customer = str.split(":");
+				String temp = customer[1];
+				String[] arrayAdress = temp.split(ConstantsUtiles.PARSE_CHARAC);
+				setterAddress(arrayAdress, address);
+			}			
 		}
+		while (commandRepository.findOneById(Long.parseLong(idOrder))
+				.isPresent()) {
+			logger.error("command already added to the db...");
+			SecureRandom random = new SecureRandom();
+			idOrder  = Integer.toString(random.nextInt(
+					(ConstantsUtiles.MAX_ID_SECURE - ConstantsUtiles.MIN_ID_SECURE) + 1) 
+					+ ConstantsUtiles.MIN_ID_SECURE);
+		} 
+		command.setAddress(address);
+		command = commandRepository.save(command);
+
 		if (command != null) {
 			commandDTO = commandMapper.commandToCommandDTO(command);
 		}
@@ -139,66 +137,18 @@ public class WineOrderResource {
 	}
 
 	/**
-	 * Test if an adress exist
-	 * @param address {@link Address}
+	 * set address properties from incoming url
+	 * @param arrayAdress
+	 * @param address
 	 * @return
 	 */
-	public boolean isExistingAddress(Address address) {
-		String request = sb.append("https://maps.googleapis.com/maps/api/geocode/json?address=")
-				.append(address.getNum())
-				.append("+")
-				.append(address.getAddress())
-				.append("+")
-				.append(address.getZipCode())
-				.append("+")
-				.append(address.getCountry())
-				.append("&key=")
-				.append(API_KEY)
-				.toString();
-		request = request.replace(' ', '+');
-		URL url;
-		HttpURLConnection httpRQ = null;
-		try {
-			//Create connection
-			url = new URL(request);
-			httpRQ = (HttpURLConnection) url.openConnection();
-			httpRQ.setRequestMethod("POST");
-			httpRQ.setRequestProperty("Content-Type", 
-					"application/x-www-form-urlencoded");
-
-			httpRQ.setRequestProperty("Content-Length", 
-					Integer.toString(request.getBytes().length));
-			httpRQ.setRequestProperty("Content-Language", "en-US");  
-
-			httpRQ.setUseCaches(false);
-			httpRQ.setDoOutput(true);
-
-			//Send request
-			DataOutputStream wr = new DataOutputStream (
-					httpRQ.getOutputStream());
-			wr.writeBytes(request);
-			wr.close();
-
-			//Get Response  
-			InputStream is = httpRQ.getInputStream();
-			BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-			StringBuilder response = new StringBuilder();
-			String line;
-			while ((line = rd.readLine()) != null) {
-				response.append(line);
-				response.append('\r');
-			}
-			rd.close();
-			return true;
-
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-			return false;
-		} finally {
-			if (httpRQ != null) {
-				httpRQ.disconnect();
-			}
+	private Address setterAddress(String[] arrayAdress, Address address) {
+		if (arrayAdress.length != 0) {
+			address.setNum(arrayAdress[2]);
+			address.setAddress(arrayAdress[3]);
+			address.setCity(arrayAdress[4]);
+			address.setCountry(arrayAdress[5]);
 		}
+		return address;
 	}
-
 }
