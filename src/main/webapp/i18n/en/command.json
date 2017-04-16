@@ -1,27 +1,28 @@
 {
-    "wsLivraisonApp": {
-        "command" : {
-            "home": {
-                "title": "Commands",
-                "createLabel": "Create a new Command",
-                "createOrEditLabel": "Create or edit a Command"
-            },
-            "created": "A new Command is created with identifier {{ param }}",
-            "updated": "A Command is updated with identifier {{ param }}",
-            "deleted": "A Command is deleted with identifier {{ param }}",
-            "delete": {
-                "question": "Are you sure you want to delete Command {{ id }}?"
-            },
-            "detail": {
-                "title": "Command"
-            },
-            "dateOrder": "Date Order",
-            "dateTaken": "Date Taken",
-            "dateShipping": "Date Shipping",
-            "dateDelivery": "Date Delivery",
-            "address": "Address",
-            "postman": "Postman",
-            "shippingMethod": "Shipping Method"
-        }
-    }
+	"wsLivraisonApp": {
+		"command": {
+			"home": {
+				"welcome": "Hello. We are Global Elite Delivery.We package and deliver your order all around the world.",
+				"title": "Commands",
+				"createLabel": "Create a new Command",
+				"createOrEditLabel": "Create or edit a Command"
+			},
+			"created": "A new Command is created with identifier {{ param }}",
+			"updated": "A Command is updated with identifier {{ param }}",
+			"deleted": "A Command is deleted with identifier {{ param }}",
+			"delete": {
+				"question": "Are you sure you want to delete Command {{ id }}?"
+			},
+			"detail": {
+				"title": "Command"
+			},
+			"dateOrder": "Date Order",
+			"dateTaken": "Date Taken",
+			"dateShipping": "Date Shipping",
+			"dateDelivery": "Date Delivery",
+			"address": "Address",
+			"postman": "Postman",
+			"shippingMethod": "Shipping Method"
+		}
+	}
 }

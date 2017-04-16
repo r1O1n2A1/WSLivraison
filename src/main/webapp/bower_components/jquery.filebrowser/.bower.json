@@ -1,6 +1,6 @@
 {
   "name": "jquery.filebrowser",
-  "version": "0.2.1",
+  "version": "0.2.3",
   "main": [
     "js/angular.piechart.js",
     "css/angular.piechart.css"
@@ -25,14 +25,13 @@
   },
   "devDependencies": {},
   "homepage": "https://github.com/jcubic/angular.piechart",
-  "_release": "0.2.1",
+  "_release": "0.2.3",
   "_resolution": {
     "type": "version",
-    "tag": "0.2.1",
-    "commit": "74c033579c20928eab659ac748fc2e5d8c858406"
+    "tag": "0.2.3",
+    "commit": "eab93e1e6d7da36a2aa1fe33460345c6e0dac87c"
   },
   "_source": "https://github.com/jcubic/angular.piechart.git",
   "_target": "^0.2.1",
-  "_originalSource": "angular.piechart",
-  "_direct": true
+  "_originalSource": "angular.piechart"
 }
