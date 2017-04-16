@@ -105,6 +105,16 @@ a.mask {
 	text-align: center;
 }
 
+/* command popup home */
+.welcomeHomeCommand {
+	color: #000000;
+	font-family: sans-serif;
+	font-weight: 250;
+}
+.welcomeHome {
+	background-color: #729fcf;
+	height: 20px;
+}
 /* --------------------------------
    END ADD PERSONAL THEMES by RONAN
    -------------------------------
@@ -4753,7 +4763,7 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 	float: left;
 	height: 70px;
 	padding: 15px 15px;
-	font-size: 30px;
+	font-size: 20px;
 	line-height: 35px;
 }
 
