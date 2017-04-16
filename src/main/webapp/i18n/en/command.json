@@ -2,7 +2,9 @@
 	"wsLivraisonApp": {
 		"command": {
 			"home": {
-				"welcome": "Hello. We are Global Elite Delivery.We package and deliver your order all around the world.",
+				"welcome": "Hello. We are Global Elite Delivery.",
+				"definition": "We package and deliver your order all around the world. We've driven a billion miles in our alternative fuel and advanced technology vehicles.",
+				"definition-bis": "Find delivery dates, times, and published rates for sending your shipments to destinations around the world.",
 				"title": "Commands",
 				"createLabel": "Create a new Command",
 				"createOrEditLabel": "Create or edit a Command"

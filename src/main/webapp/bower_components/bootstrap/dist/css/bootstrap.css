@@ -107,14 +107,15 @@ a.mask {
 
 /* command popup home */
 .welcomeHomeCommand {
-	color: #000000;
-	font-family: sans-serif;
-	font-weight: 250;
+	text-align: center;
 }
 .welcomeHome {
-	background-color: #729fcf;
-	height: 20px;
+	background-color: #3ea0ff;
+	height: 25px;
 }
+.border-home {
+ 	border:3px double black;
+ }
 /* --------------------------------
    END ADD PERSONAL THEMES by RONAN
    -------------------------------
