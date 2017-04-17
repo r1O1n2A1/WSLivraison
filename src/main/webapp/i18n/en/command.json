@@ -2,9 +2,12 @@
 	"wsLivraisonApp": {
 		"command": {
 			"home": {
-				"welcome": "Hello. We are Global Elite Delivery.",
+				"welcome": "Hello. We are <b> Global Elite Delivery</b>.",
 				"definition": "We package and deliver your order all around the world. We've driven a billion miles in our alternative fuel and advanced technology vehicles.",
 				"definition-bis": "Find delivery dates, times, and published rates for sending your shipments to destinations around the world.",
+				"incoming":"You have been forwarded from our partner <b>OnWine</b> in order to find a suitable packaging and shipping offer.",
+				"incomingCommand": "Your command have been temporary saved.",
+				"steps": "To pursue, follow the steps below:",
 				"title": "Commands",
 				"createLabel": "Create a new Command",
 				"createOrEditLabel": "Create or edit a Command"

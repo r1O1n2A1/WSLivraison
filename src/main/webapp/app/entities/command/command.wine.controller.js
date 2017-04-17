@@ -4,13 +4,12 @@
 	.module('wsLivraisonApp')
 	.controller('CommandWineController', CommandWineController);
 
-	CommandWineController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Command', 'Address', 'Postman', 'ShippingMethod'];
+	CommandWineController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance'];
 
-	function CommandWineController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Command, Address, Postman, ShippingMethod) {
+	function CommandWineController ($timeout, $scope, $stateParams, $uibModalInstance) {
 		var vm = this;
 		var url = window.location.href;
 		vm.clear = clear;
-		vm.command = entity;
 
 		vm.idCommand = parseUrl();
 		

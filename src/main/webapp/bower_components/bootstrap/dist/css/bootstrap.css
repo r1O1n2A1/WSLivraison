@@ -110,12 +110,17 @@ a.mask {
 	text-align: center;
 }
 .welcomeHome {
-	background-color: #3ea0ff;
+	background-color: #babdb6;
 	height: 25px;
 }
 .border-home {
- 	border:3px double black;
+ 	border:3px double #ffffff;
  }
+ 
+.ul-style-circle {
+	list-style-type: circle;
+} 
+ 
 /* --------------------------------
    END ADD PERSONAL THEMES by RONAN
    -------------------------------

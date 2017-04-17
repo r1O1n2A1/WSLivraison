@@ -55,12 +55,7 @@
         			controller: 'CommandWineController',
         			controllerAs: 'vm',
         			backdrop: 'static',
-        			size: 'lg',
-        			resolve: {
-        				entity: ['Command', function(Command) {
-        					return Command.get({id: $stateParams.id}).$promise;
-        				}]
-        			}
+        			size: 'lg'
         		}).result.then(function() {
                     $state.go('^', {}, { reload: false });
                 }, function() {
