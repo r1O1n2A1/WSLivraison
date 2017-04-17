@@ -8,6 +8,9 @@
 				"incoming":"You have been forwarded from our partner <b>OnWine</b> in order to find a suitable packaging and shipping offer.",
 				"incomingCommand": "Your command have been temporary saved.",
 				"steps": "To pursue, follow the steps below:",
+				"step-one": "Login or register, proceed to <b>Account</b> -> Sign in/Register",
+				"step-two": "Choose your shipping details, proceed to <b>Shipping</b>",
+				"step-three": "Accept our terms and conditions",
 				"title": "Commands",
 				"createLabel": "Create a new Command",
 				"createOrEditLabel": "Create or edit a Command"

@@ -6,28 +6,34 @@
 			<div class="welcomeHomeCommand no-padding-left">
 				<h3 data-translate="wsLivraisonApp.command.home.welcome">Hello</h3>
 				<h4 data-translate="wsLivraisonApp.command.home.definition">definition</h4>
-				<h4 data-translate="wsLivraisonApp.command.home.definition-bis">definition-bis</h4>
+<!-- 				<h4 data-translate="wsLivraisonApp.command.home.definition-bis">definition-bis</h4> -->
 				<h4 data-translate="wsLivraisonApp.command.home.incoming">incoming</h4>
 				<h4 data-translate="wsLivraisonApp.command.home.incomingCommand">incomingCommand</h4>
-				<h4 data-translate="wsLivraisonApp.command.home.steps">steps</h4>				
+				<h4 data-translate="wsLivraisonApp.command.home.steps">steps</h4>
 			</div>
 			<div class="no-padding-left">
 				<ul class="ul-style-circle">
-					<li>1 </li>
+					<li>
+						<h4 data-translate="wsLivraisonApp.command.home.step-one">step-one</h4>
+					</li>
+					<li>
+						<h4 data-translate="wsLivraisonApp.command.home.step-two">step-two</h4>
+					</li>
+					<li>
+						<h4 data-translate="wsLivraisonApp.command.home.step-three">step-three</h4>
+					</li>
 				</ul>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-xs-4 no-padding-left">
-				<button class="btn btn-primary" ui-sref="command.new">
-					<span class="glyphicon glyphicon-plus"></span> <span
-						data-translate="wsLivraisonApp.command.home.createLabel">
-						Create new Command </span>
+		<div class="row top-buffer20 ">
+			<div class="padding-right50">
+				<button class="btn btn-primary" data-dismiss="modal" ng-click="vm.clear()">
+					<span class="glyphicon glyphicon-ok-circle"></span> 
+					<span> Proceed </span>
 				</button>
 			</div>
 		</div>
-		<div class="row">{{ vm.idCommand }}</div>
-		<div class="row welcomeHome"></div>
+		<div class="row welcomeHome top-buffer"></div>
 	</div>
-	
+
 </div>

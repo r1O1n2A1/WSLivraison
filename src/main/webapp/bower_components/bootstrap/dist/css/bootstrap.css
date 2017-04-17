@@ -118,8 +118,13 @@ a.mask {
  }
  
 .ul-style-circle {
-	list-style-type: circle;
+	list-style-type: square;
 } 
+ 
+.padding-right50 {
+	position: absolute; 
+	right: 10%;
+}
  
 /* --------------------------------
    END ADD PERSONAL THEMES by RONAN
