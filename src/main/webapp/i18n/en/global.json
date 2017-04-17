@@ -84,6 +84,9 @@
         },
         "ribbon": {
             "dev":"Development"
+        },
+        "shipping": {
+        	"title": "Shipping details"
         }
     },
     "entity": {

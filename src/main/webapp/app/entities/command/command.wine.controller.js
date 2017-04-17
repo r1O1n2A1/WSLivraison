@@ -11,12 +11,12 @@
 		var url = window.location.href;
 		vm.clear = clear;
 
-		vm.idCommand = parseUrl();
+		$scope.idCommandWine = parseUrl();
 		
 		function parseUrl() {
 			var arrayUrl = url.split("/");
 			if(arrayUrl.length !== 0) {
-				return arrayUrl[4];
+				return arrayUrl[5];
 			} else {
 				return "";
 			}

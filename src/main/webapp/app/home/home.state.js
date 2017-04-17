@@ -31,7 +31,7 @@
         })
         .state('command.new.wine', {
         	parent: 'app',
-        	url: '/{id}',
+        	url: '/wine/{id}',
         	data: {
         		authorities: []
         	},
