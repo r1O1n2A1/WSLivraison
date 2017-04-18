@@ -4,13 +4,15 @@
 		<div class="col-sm-6">
 			<div class="form-group">
 				<label for="firstname">Firstname</label> <input type="text"
-					class="form-control" id="firstname">
+					class="form-control" id="firstname"
+					ng-model="vm.settingsAccount.firstName">
 			</div>
 		</div>
 		<div class="col-sm-6">
 			<div class="form-group">
 				<label for="lastname">Lastname</label> <input type="text"
-					class="form-control" id="lastname">
+					class="form-control" id="lastname"
+					ng-model="vm.settingsAccount.lastName">
 			</div>
 		</div>
 	</div>
@@ -25,8 +27,8 @@
 		</div>
 		<div class="col-sm-6">
 			<div class="form-group">
-				<label for="street">Street</label> <input type="text"
-					class="form-control" id="street">
+				<label for="street">SIRET</label> <input type="text"
+					class="form-control" id="siret">
 			</div>
 		</div>
 	</div>
@@ -35,14 +37,15 @@
 	<div class="row">
 		<div class="col-sm-6 col-md-3">
 			<div class="form-group">
-				<label for="city">Company</label> <input type="text"
-					class="form-control" id="city">
+				<label for="city">Street</label> <input type="text"
+					class="form-control" id="street" ng-model="vm.address.address"
+					required>
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-3">
 			<div class="form-group">
 				<label for="zip">ZIP</label> <input type="text" class="form-control"
-					id="zip">
+					id="zip" ng-model="vm.address.zipCode" required>
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-3">
@@ -54,7 +57,9 @@
 		<div class="col-sm-6 col-md-3">
 			<div class="form-group">
 				<label for="country">Country</label> <select class="form-control"
-					id="country"></select>
+					id="country" ng-model="vm.address.country" required>
+					<option ng-repeat="country in vm.country_list" value="{{country}}">{{country}}</option>
+				</select>
 			</div>
 		</div>
 
@@ -67,15 +72,96 @@
 		<div class="col-sm-6">
 			<div class="form-group">
 				<label for="email">Email</label> <input type="text"
-					class="form-control" id="email">
+					class="form-control" id="email" ng-model="vm.settingsAccount.email">
 			</div>
 		</div>
 	</div>
 </div>
 <h2>Calculate Time & Cost</h2>
 <div class="row top-buffer20">
-	{{ idCommandWine }}
+	<div class="col-sm-6 col-md-3">
+		<div class="form-group">
+			<label for="type">Type</label> <select class="form-control" id="type"
+				ng-model="vm.typeShipping">
+				<option ng-repeat="type in vm.typesShipping" value="{{type}}">{{type}}</option>
+			</select>
+
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-3">
+		<div class="form-group">
+			<label for="weight">Weight [Kg]</label> <select class="form-control"
+				id="type" ng-model="vm.weightShipping[0]">
+				<option ng-repeat="weight in vm.weightShipping" value="{{weight}}">{{weight}}</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-sm-6">
+		<div class="form-group">
+			<label for="description">Description</label> <input type="text"
+				class="form-control" id="description"
+				ng-model="vm.descriptionShipping" required>
+		</div>
+	</div>
+	<!-- SHIP FROM -->
+	<div class="col-sm-6 col-md-4">
+		<div class="form-group">
+			<label for="fromCountry">Ship From</label><select
+				class="form-control" id="country" ng-model="vm.fromAddress.country"
+				required>
+				<option ng-repeat="country in vm.country_list" value="{{country}}">{{country}}</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-4">
+		<div class="form-group">
+			<label for="fromZip">Postal Code</label> <input type="text"
+				class="form-control" id="fromZip" ng-model="vm.fromAddress.zip"
+				required>
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-4">
+		<div class="form-group">
+			<label for="fromCity">City</label> <input type="text"
+				class="form-control" id="fromCity" ng-model="vm.fromAddress.city"
+				required>
+		</div>
+	</div>
+
+	<!-- SHIP TO -->
+	<div class="col-sm-6 col-md-4">
+		<div class="form-group">
+			<label for="fromCountry">Ship To</label><select class="form-control"
+				id="country" ng-model="vm.address.country" required>
+				<option ng-repeat="country in vm.country_list" value="{{country}}">{{country}}</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-4">
+		<div class="form-group">
+			<label for="fromZip">Postal Code</label> <input type="text"
+				class="form-control" id="fromZip" ng-model="vm.address.zipCode"
+				required>
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-4">
+		<div class="form-group">
+			<label for="fromCity">City</label> <input type="text"
+				class="form-control" id="fromCity" ng-model="vm.address.city"
+				required>
+		</div>
+	</div>
+</div>
+<div class="row top-buffer20 ">
+	<div class="padding-right50">
+		<button class="btn btn-primary" ng-click="">
+			<span class="glyphicon glyphicon-search"></span> <span>
+				Estimate </span>
+		</button>
+	</div>
+</div>
+<div class="row top-buffer">
+	
 </div>
 <h2>Find locations</h2>
-<div class="row">
-</div>
+<div class="row"></div>
