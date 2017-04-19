@@ -10,22 +10,22 @@
    	ONLY CHANGE CSS HERE NOT BOOTSRAP CLASS
    -----------------------------
  */
- 
+
 .heightHeader {
-	height: 80px; 
-/* 	background: #d94d3a; */
+	height: 80px;
+	/* 	background: #d94d3a; */
 }
- 
+
 .serviceCountdown {
 	height: 115px;
-    width: 13%;
+	width: 13%;
 }
 
 .servicesImg {
 	height: 250px;
-    width: 95%;
-}  
-  
+	width: 95%;
+}
+
 .top-buffer {
 	margin-top: 50px;
 }
@@ -48,26 +48,29 @@
 }
 
 .in-ser {
-/* 	padding: 1em 0; */
+	/* 	padding: 1em 0; */
+	
 }
 
-.mask{
-	left:100px;
+.mask {
+	left: 100px;
 }
 
 .number {
-	float:left;
+	float: left;
 }
-.number-in{
-	width:78%;
+
+.number-in {
+	width: 78%;
 	padding: 1em 0 2em;
 }
 
-.number-top{
-	border-bottom:4px solid #ccc;
+.number-top {
+	border-bottom: 4px solid #ccc;
 }
-.number-top:hover{
-	border-bottom:4px solid #b66ca9;
+
+.number-top:hover {
+	border-bottom: 4px solid #b66ca9;
 }
 
 img.zoom-img:hover {
@@ -90,15 +93,15 @@ img.zoom-img {
 }
 
 .img-responsive {
-    display: block;
-    max-width: 100%;
-    height: auto;
+	display: block;
+	max-width: 100%;
+	height: auto;
 }
 
 a.mask {
-    text-decoration: none;
-    overflow: hidden;
-    display: block;
+	text-decoration: none;
+	overflow: hidden;
+	display: block;
 }
 
 .centerMid {
@@ -109,30 +112,29 @@ a.mask {
 .welcomeHomeCommand {
 	text-align: center;
 }
+
 .welcomeHome {
 	background-color: #babdb6;
 	height: 25px;
 }
+
 .border-home {
- 	border:3px double #ffffff;
- }
- 
+	border: 3px double #ffffff;
+}
+
 .ul-style-circle {
 	list-style-type: square;
-} 
- 
+}
+
 .padding-right50 {
-	position: absolute; 
+	position: absolute;
 	right: 10%;
 }
- 
+
 /* --------------------------------
    END ADD PERSONAL THEMES by RONAN
    -------------------------------
  */
-  
-  
-  
 html {
 	font-family: sans-serif;
 	-webkit-text-size-adjust: 100%;
@@ -153,11 +155,28 @@ audio, canvas, progress, video {
 	vertical-align: baseline;
 }
 
-audio:not ([controls] ) {
-	display: none;
-	height: 0;
-}
+audio
+:not
+ 
+(
+[
+controls
+]
+ 
+)
+{
+display
+:
+ 
+none
+;
 
+	
+height
+:
+ 
+0;
+}
 [hidden], template {
 	display: none;
 }
@@ -215,10 +234,22 @@ img {
 	border: 0;
 }
 
-svg:not (:root ) {
-	overflow: hidden;
-}
+svg
+:not
+ 
+(
+:root
+ 
+)
+{
+overflow
+:
+ 
+hidden
+;
 
+
+}
 figure {
 	margin: 1em 40px;
 }
@@ -4101,26 +4132,94 @@ tbody.collapse.in {
 	margin-left: 5px;
 }
 
-.btn-group>.btn:not (:first-child ):not (:last-child ):not (.dropdown-toggle
-	) {
-	border-radius: 0;
-}
+.btn-group
+>
+.btn
+:not
+ 
+(
+:first-child
+ 
+)
+:not
+ 
+(
+:last-child
+ 
+)
+:not
+ 
+(
+.dropdown-toggle
 
+	
+)
+{
+border-radius
+:
+ 
+0;
+}
 .btn-group>.btn:first-child {
 	margin-left: 0;
 }
 
-.btn-group>.btn:first-child:not (:last-child ):not (.dropdown-toggle ) {
-	border-top-right-radius: 0;
-	border-bottom-right-radius: 0;
+.btn-group
+>
+.btn
+:first-child
+:not
+ 
+(
+:last-child
+ 
+)
+:not
+ 
+(
+.dropdown-toggle
+ 
+)
+{
+border-top-right-radius
+:
+ 
+0;
+border-bottom-right-radius
+:
+ 
+0;
 }
+.btn-group
+>
+.btn
+:last-child
+:not
+ 
+(
+:first-child
+ 
+),
+.btn-group
+>
+.dropdown-toggle
+:not
 
-.btn-group>.btn:last-child:not (:first-child ), .btn-group>.dropdown-toggle:not
-	(:first-child ) {
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
+	
+(
+:first-child
+ 
+)
+{
+border-top-left-radius
+:
+ 
+0;
+border-bottom-left-radius
+:
+ 
+0;
 }
-
 .btn-group>.btn-group {
 	float: left;
 }
@@ -4197,24 +4296,99 @@ tbody.collapse.in {
 	margin-left: 0;
 }
 
-.btn-group-vertical>.btn:not (:first-child ):not (:last-child ) {
-	border-radius: 0;
+.btn-group-vertical
+>
+.btn
+:not
+ 
+(
+:first-child
+ 
+)
+:not
+ 
+(
+:last-child
+ 
+)
+{
+border-radius
+:
+ 
+0;
 }
+.btn-group-vertical
+>
+.btn
+:first-child
+:not
+ 
+(
+:last-child
+ 
+)
+{
+border-top-left-radius
+:
+ 
+4
+px
+;
 
-.btn-group-vertical>.btn:first-child:not (:last-child ) {
-	border-top-left-radius: 4px;
-	border-top-right-radius: 4px;
-	border-bottom-right-radius: 0;
-	border-bottom-left-radius: 0;
+	
+border-top-right-radius
+:
+ 
+4
+px
+;
+
+	
+border-bottom-right-radius
+:
+ 
+0;
+border-bottom-left-radius
+:
+ 
+0;
 }
+.btn-group-vertical
+>
+.btn
+:last-child
+:not
+ 
+(
+:first-child
+ 
+)
+{
+border-top-left-radius
+:
+ 
+0;
+border-top-right-radius
+:
+ 
+0;
+border-bottom-right-radius
+:
+ 
+4
+px
+;
 
-.btn-group-vertical>.btn:last-child:not (:first-child ) {
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
-	border-bottom-right-radius: 4px;
-	border-bottom-left-radius: 4px;
+	
+border-bottom-left-radius
+:
+ 
+4
+px
+;
+
+
 }
-
 .btn-group-vertical>.btn-group:not (:first-child ):not (:last-child ) >.btn
 	{
 	border-radius: 0;
@@ -4334,12 +4508,54 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 	display: table-cell;
 }
 
-.input-group-addon:not (:first-child ):not (:last-child ),
-	.input-group-btn:not (:first-child ):not (:last-child ), .input-group .form-control:not
-	(:first-child ):not (:last-child ) {
-	border-radius: 0;
-}
+.input-group-addon
+:not
+ 
+(
+:first-child
+ 
+)
+:not
+ 
+(
+:last-child
+ 
+),
+.input-group-btn
+:not
+ 
+(
+:first-child
+ 
+)
+:not
+ 
+(
+:last-child
+ 
+),
+.input-group
+ 
+.form-control
+:not
 
+	
+(
+:first-child
+ 
+)
+:not
+ 
+(
+:last-child
+ 
+)
+{
+border-radius
+:
+ 
+0;
+}
 .input-group-addon, .input-group-btn {
 	width: 1%;
 	white-space: nowrap;
@@ -4378,8 +4594,8 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 .input-group .form-control:first-child, .input-group-addon:first-child,
 	.input-group-btn:first-child>.btn, .input-group-btn:first-child>.btn-group>.btn,
 	.input-group-btn:first-child>.dropdown-toggle, .input-group-btn:last-child>.btn:not
-	(:last-child ):not (.dropdown-toggle ), .input-group-btn:last-child>.btn-group:not
-	(:last-child ) >.btn {
+	 (:last-child ):not (.dropdown-toggle ), .input-group-btn:last-child>.btn-group:not
+	 (:last-child ) >.btn {
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
 }
@@ -4391,8 +4607,8 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 .input-group .form-control:last-child, .input-group-addon:last-child,
 	.input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group>.btn,
 	.input-group-btn:last-child>.dropdown-toggle, .input-group-btn:first-child>.btn:not
-	(:first-child ), .input-group-btn:first-child>.btn-group:not (:first-child
-	) >.btn {
+	 (:first-child ), .input-group-btn:first-child>.btn-group:not (:first-child
+	 ) >.btn {
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
 }
