@@ -45,7 +45,7 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
     mail:
-        host: localhost
+        host: smtp.orange.fr
         port: 25
         username:
         password:

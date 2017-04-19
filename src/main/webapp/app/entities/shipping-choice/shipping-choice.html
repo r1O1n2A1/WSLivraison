@@ -1,5 +1,5 @@
 <h2>Create a Shipment</h2>
-<div class="top-buffer20">
+<div class="top-buffer20" ng-cloak>
 	<div class="row">
 		<div class="col-sm-6">
 			<div class="form-group">
@@ -50,8 +50,8 @@
 		</div>
 		<div class="col-sm-6 col-md-3">
 			<div class="form-group">
-				<label for="state">State</label> <select class="form-control"
-					id="state"></select>
+				<label for="city">City</label> <input type="text" class="form-control"
+					id="city" ng-model="vm.address.city" required>
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-3">
@@ -116,7 +116,7 @@
 	<div class="col-sm-6 col-md-4">
 		<div class="form-group">
 			<label for="fromZip">Postal Code</label> <input type="text"
-				class="form-control" id="fromZip" ng-model="vm.fromAddress.zip"
+				class="form-control" id="fromZip" ng-model="vm.fromAddress.zipCode"
 				required>
 		</div>
 	</div>
@@ -154,7 +154,7 @@
 </div>
 <div class="row top-buffer20 ">
 	<div class="padding-right50">
-		<button class="btn btn-primary" ng-click="">
+		<button class="btn btn-primary" ng-click="vm.estimate()">
 			<span class="glyphicon glyphicon-search"></span> <span>
 				Estimate </span>
 		</button>
@@ -162,7 +162,7 @@
 </div>
 
 <!-- RESULT ESTIMATE -->
-<div class="row top-buffer" ng-cloak>
+<div class="row top-buffer" ng-show="vm.estimated" ng-cloak>
 	<div class="table-responsive">
 		<table class="jh-table table table-striped">
 			<thead>
@@ -222,3 +222,4 @@
 <!-- Confirm locations on google map -->
 <h2>Confirm locations</h2>
 <div class="row"></div>
+

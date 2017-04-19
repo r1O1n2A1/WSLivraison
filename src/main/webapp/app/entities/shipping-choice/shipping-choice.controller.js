@@ -22,12 +22,13 @@
 		vm.fromAddress = {
 				num: '12',
 				address:'cours Vauban',
-				zip: '33390',
+				zipCode: '33390',
 				country: 'France',
 				city: 'Blaye'
 		}
 		var postmen =  Postman.query();
 		vm.distance = 0;
+		vm.estimated = false;
 		vm.country_list = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas"
 			,"Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands"
 			,"Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica"
@@ -101,6 +102,7 @@
 								to = sortedArray;
 								//2) calculate distance
 								vm.distance = getDistance(from, to)/1000; //[km]
+								console.log(vm.distance);
 								//3) define postmen
 								var coeff = definePostmenCoeffDate();
 
@@ -122,10 +124,9 @@
 		}		
 
 		function calculateDistanceGoogleAPI(address) {
-			var strAddress = address.num + ' ' + address.address + ' ' + address.city;
+			var strAddress =  address.city;
 			var deferred = $.Deferred();
 			geocoder.geocode( { 'address': strAddress}, function(results, status) {
-
 				if (status === 'OK') {                   
 					var latLngArray = [
 						+results[0].geometry.location.lat(),
@@ -136,8 +137,7 @@
 				} else {
 					deferred.reject(status);
 				}          
-			});             
-
+			});           
 			return deferred.promise();
 		}
 
@@ -197,6 +197,27 @@
 				return coeff;
 			}
 		}
+		
+		vm.estimate = function() {
+			if (vm.postmenCalculate) {				
+				if(vm.estimated) {
+					vm.postmenCalculate = [];
+					calculateCost();
+					vm.estimated = false;
+				} else {
+					vm.estimated = true;
+				}
+			} else {
+				if(vm.estimated) {
+					calculateCost();
+					vm.estimated = false;
+				} else {
+					calculateCost();
+					vm.estimated = true;
+				}
+			}
+		}
+			
 
 		// -------- /END SHIPPING --------- //
 
