@@ -10,7 +10,7 @@
         var resourceUrl =  'api/commands/:id';
 
         return $resource(resourceUrl, {}, {
-            'query': { method: 'GET'},
+            'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

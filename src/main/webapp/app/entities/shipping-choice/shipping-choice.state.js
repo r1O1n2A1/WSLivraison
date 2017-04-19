@@ -26,6 +26,8 @@
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('global');
+                    $translatePartialLoader.addPart('postman');
+                    $translatePartialLoader.addPart('command');
                     return $translate.refresh();
                 }]
             }

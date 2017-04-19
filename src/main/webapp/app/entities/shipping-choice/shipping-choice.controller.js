@@ -27,6 +27,7 @@
 				city: 'Blaye'
 		}
 		var postmen =  Postman.query();
+		vm.distance = 0;
 
 		vm.country_list = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas"
 			,"Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands"
@@ -83,44 +84,111 @@
 			} 
 		}	
 
-		calculateCost(postmen);
-		function calculateCost(postmen) {
+		// -------- START SHIPPING --------- //
+
+		var geocoder = new google.maps.Geocoder();
+
+		calculateCost();
+		function calculateCost() {
+			var from = [];
+			var to = [];
 			// estimate distance + cost with postmen
 			//1) find lat/long for each shipping FROM/TO
-			var latlongFrom = calculateDistanceGoogleAPI(vm.fromAddress);
-			var latlongTo = calculateDistanceGoogleAPI(vm.address);
-			//2) calculate distance 
-			
-		}
+			calculateDistanceGoogleAPI(vm.fromAddress).then(function(sortedArray){				
+				from = sortedArray;
+				if (from[0] && from[1] ) {
+					calculateDistanceGoogleAPI(vm.address).then(function(sortedArray){
+						to = sortedArray;
+						//2) calculate distance
+						vm.distance = getDistance(from, to)/1000; //[km]
+						//3) define postmen
+						if(vm.distance) {
+							var coeff = 1;
+							if(vm.distance > 0 && vm.distance <= 1000) {
+								// nothing
+							} else if (vm.distance > 1000 && vm.distance <= 2000) {
+								coeff = 2;
+							} else if (vm.distance > 2000 && vm.distance <= 4000) {
+								coeff = 4;
+							} else {
+								coeff = 5;
+							}
+							
+							if (postmen) {
+								postmen.forEach(function(res){
+									var temp = res.maxPrice;
+									res.maxPrice = temp*coeff;
+									vm.postmenCalculate.push(res);
+								});
+							}
+						}
+					})
+				}
+			}, function (err) {
+				console.error('Uh oh! An error occurred!', err);
+			});
+		}		
 
-		var geocoder = new google.maps.Geocoder();		
 		function calculateDistanceGoogleAPI(address) {
 			var strAddress = address.num + ' ' + address.address + ' ' + address.city;
+			var deferred = $.Deferred();
 			geocoder.geocode( { 'address': strAddress}, function(results, status) {
-				if (status == google.maps.GeocoderStatus.OK) {
-					var latitude = results[0].geometry.location.lat();
-					var longitude = results[0].geometry.location.lng();
-					return [latitude,longitude];
-				}
-			});
+
+				if (status === 'OK') {                   
+					var latLngArray = [
+						+results[0].geometry.location.lat(),
+						+results[0].geometry.location.lng()
+						];
+
+					deferred.resolve(latLngArray);
+				} else {
+					deferred.reject(status);
+				}          
+			});             
+
+			return deferred.promise();
 		}
-		// calculate radius + distance from lat/long
+
+//		calculate radius + distance from lat/long
 		function rad(x) {
 			return x * Math.PI / 180;
 		}
 
 		function getDistance(p1, p2) {
 			var R = 6378137; // Earth’s mean radius in meter
-			var dLat = rad(p2.lat() - p1.lat());
-			var dLong = rad(p2.lng() - p1.lng());
+			var dLat = rad(p2[0] - p1[0]);
+			var dLong = rad(p2[1] - p1[1]);
 			var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-			Math.cos(rad(p1.lat())) * Math.cos(rad(p2.lat())) *
+			Math.cos(rad(p1[0])) * Math.cos(rad(p2[0])) *
 			Math.sin(dLong / 2) * Math.sin(dLong / 2);
 			var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-			var d = R * c;
-			return d; // returns the distance in meter
+			return R * c; // returns the distance in meter
 		}
+
+		function onSaveSuccess (result) {
+			$scope.$emit('wsLivraisonApp:commandUpdate', result);
+			vm.isSaving = false;
+		}
+
+		function onSaveError () {
+			vm.isSaving = false;
+		}		
 		
-		// end shipping
+		function defineShippingMethod(distance) {
+			if (distance) {
+				if(distance > 0 && distance <= 1000) {
+					vm.command.shippingMethodId = 3;
+				} else if (distance > 1000 && distance <= 2000) {
+					vm.command.shippingMethodId = 4;
+				} else if (distance > 2000 && distance <= 4000) {
+					vm.command.shippingMethodId = 1;
+				} else {
+					vm.command.shippingMethodId = 2;
+				}
+				Command.update(vm.command, onSaveSuccess, onSaveError);
+			}
+		}
+
+		// -------- END SHIPPING --------- //
 	}
 })();
