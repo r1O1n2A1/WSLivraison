@@ -66,15 +66,44 @@ public class WineOrderResource {
 		if (incomingInfos.length != 0) {
 			commandDTO = saveCommandWithAdress(incomingInfos);
 		}
-		
+
 		if (commandDTO.getId() != null) {
 			return ResponseEntity.created(new URI(SOAP_WS_SHIPPING))
-				.headers(HeaderUtil.createEntityCreationAlert(ConstantsUtiles.CMD_ADDRESS, "validated"))
-				.body("description:command correctly created, id: " + commandDTO.getId());
+					.headers(HeaderUtil.createEntityCreationAlert(ConstantsUtiles.CMD_ADDRESS, "validated"))
+					.body("description:command correctly created, id: " + commandDTO.getId());
 		} else {
 			return ResponseEntity.created(new URI(SOAP_WS_SHIPPING))
 					.headers(HeaderUtil.createEntityCreationAlert(ConstantsUtiles.CMD_ADDRESS, "not-validated"))
 					.body("{description:command could not be created}");
+		}
+	}
+
+	@GetMapping("/order/shipping/{idShipping}")
+	@Timed
+	public ResponseEntity<?> getShippingFromApp(@PathVariable String idShipping) 
+			throws URISyntaxException, UnsupportedEncodingException {
+		logger.info("REST test isShipping from Wine-App");
+		CommandDTO commandDTO = null;
+		if (!idShipping.equalsIgnoreCase(ConstantsUtiles.EMPTY_STR)
+				&& commandRepository.findOneById(
+						Long.valueOf(decodeIncomingUrl(idShipping))).isPresent()) {
+			Command command = commandRepository.findOneById(
+					Long.valueOf(decodeIncomingUrl(idShipping))).get();
+			if (command != null) {
+				commandDTO = commandMapper.commandToCommandDTO(command);
+			}
+		}
+		if (commandDTO.getId() != null) {
+			return ResponseEntity.created(new URI(SOAP_WS_SHIPPING))
+					.headers(HeaderUtil.createEntityCreationAlert(ConstantsUtiles.CMD_ADDRESS, 
+							commandDTO.getAddressId()  + ConstantsUtiles.FOUND))
+					.body("description:command correctly created, address" 
+							+ commandDTO.getAddressId()  
+							+ ConstantsUtiles.FOUND);
+		} else {
+			return ResponseEntity.created(new URI(SOAP_WS_SHIPPING))
+					.headers(HeaderUtil.createEntityCreationAlert(ConstantsUtiles.CMD_ADDRESS, "address not validated"))
+					.body("{description:command not created}");
 		}
 	}
 
@@ -98,6 +127,7 @@ public class WineOrderResource {
 		byte[] decoded = Base64.getDecoder().decode(infos);
 		return new String(decoded, "UTF-8"); 
 	}
+
 
 	/**
 	 * @param incomming array string including

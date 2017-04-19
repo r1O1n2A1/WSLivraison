@@ -8,6 +8,7 @@ public final class ConstantsUtiles {
 	public static final  int MAX_ID_SECURE = 1000000000;
 	public static final String EMPTY_STR = "";
 	public static final String CMD_ADDRESS = "Command with Address";
+	public static final String FOUND = " has been found";
 	
 	private ConstantsUtiles() {
 		// empty
