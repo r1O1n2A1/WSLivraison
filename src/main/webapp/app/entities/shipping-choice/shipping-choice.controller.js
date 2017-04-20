@@ -88,8 +88,7 @@
 
 		var geocoder = new google.maps.Geocoder();
 
-		calculateCost();
-		function calculateCost() {
+		vm.calculateCost = function () {
 			var from = [];
 			var to = [];
 			// estimate distance + cost with postmen
@@ -97,14 +96,16 @@
 			calculateDistanceGoogleAPI(vm.fromAddress).then(
 					function(sortedArray) {				
 						from = sortedArray;
-						if (from[0] && from[1] ) {
+						if (from[0] && from[1]) {
+							
 							calculateDistanceGoogleAPI(vm.address).then(function(sortedArray){
 								to = sortedArray;
 								//2) calculate distance
 								vm.distance = getDistance(from, to)/1000; //[km]
+								console.log(vm.distance);
 								//3) define postmen
 								var coeff = definePostmenCoeffDate();
-								if (vm.postmen) {
+								if (vm.postmen.length && vm.postmenCalculate.length == 0) {
 									vm.postmen.forEach(function(res){
 										var temp = res.maxPrice;
 										res.dateDelivery = randomDate(new Date(),
@@ -195,21 +196,23 @@
 			}
 		}
 		
+		vm.calculateCost();
 		vm.estimate = function() {
-			if (vm.postmenCalculate) {				
+			if (vm.postmenCalculate.length) {				
 				if(vm.estimated) {
 					vm.postmenCalculate = [];
-					calculateCost();
+					vm.calculateCost();
 					vm.estimated = false;
 				} else {
 					vm.estimated = true;
 				}
 			} else {
+				vm.postmenCalculate = [];
 				if(vm.estimated) {
-					calculateCost();
+					vm.calculateCost();
 					vm.estimated = false;
 				} else {
-					calculateCost();
+					vm.calculateCost();
 					vm.estimated = true;
 				}
 			}
