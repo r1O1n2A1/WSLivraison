@@ -264,7 +264,7 @@
 		}
 		
 		vm.redirectWineApp = function() {
-			window.location.replace('http://www.google.fr/' + vm.address.id + '-' + vm.postmen[vm.choosenShipping].maxPrice );
+			window.location.replace('http://localhost:8081/Wine-Web/pages/checkout3payment.jsf' + vm.address.id + '-' + vm.postmen[vm.choosenShipping].maxPrice );
 		}
 		
 		// -------------END CONTROLLER ----------//

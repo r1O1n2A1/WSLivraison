@@ -67,10 +67,10 @@ public class WineOrderResource {
 			commandDTO = saveCommandWithAdress(incomingInfos);
 		}
 
-		if (commandDTO.getId() != null) {
+		if (commandDTO.getId() != null && commandDTO.getAddressId() != null) {
 			return ResponseEntity.created(new URI(SOAP_WS_SHIPPING))
 					.headers(HeaderUtil.createEntityCreationAlert(ConstantsUtiles.CMD_ADDRESS, "validated"))
-					.body("description:command correctly created, id: " + commandDTO.getId());
+					.body("description:command correctly created, id: " + commandDTO.getAddressId());
 		} else {
 			return ResponseEntity.created(new URI(SOAP_WS_SHIPPING))
 					.headers(HeaderUtil.createEntityCreationAlert(ConstantsUtiles.CMD_ADDRESS, "not-validated"))
