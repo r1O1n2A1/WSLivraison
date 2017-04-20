@@ -55,7 +55,7 @@ public class WineOrderResource {
 
 	@GetMapping("/order/{infos}")
 	@Timed
-	public ResponseEntity<?> createOrderFomWine(@PathVariable String infos)
+	public ResponseEntity<?> createOrderFromWine(@PathVariable String infos)
 			throws URISyntaxException, UnsupportedEncodingException {
 		logger.info("REST request from Wine-App");
 		// parsing info
@@ -154,7 +154,7 @@ public class WineOrderResource {
 				String[] customer = str.split(":");
 				String temp = customer[1];
 				String[] arrayAdress = temp.split(ConstantsUtiles.PARSE_CHARAC);
-				setterAddress(arrayAdress, address);
+				address = setterAddress(arrayAdress, address);
 			}			
 		}
 		if (idOrder != ConstantsUtiles.EMPTY_STR &&
@@ -166,14 +166,16 @@ public class WineOrderResource {
 				idOrder  = Integer.toString(random.nextInt(
 						(ConstantsUtiles.MAX_ID_SECURE - ConstantsUtiles.MIN_ID_SECURE) + 1) 
 						+ ConstantsUtiles.MIN_ID_SECURE);
+				command.setId(Long.valueOf(idOrder));
 			} 
-			boolean isAdress = GoogleMapAPI.isExistingAddress(address);
-			if (isAdress) {
-				command.setAddress(address);
-			} 
-			addressRepository.save(address);
-			command = commandRepository.save(command);
 		}
+		boolean isAdress = GoogleMapAPI.isExistingAddress(address);
+		if (isAdress) {
+			command.setAddress(address);
+		} 
+		addressRepository.save(address);
+		command = commandRepository.save(command);
+
 
 		if (command != null) {
 			commandDTO = commandMapper.commandToCommandDTO(command);
@@ -191,8 +193,9 @@ public class WineOrderResource {
 		if (arrayAdress.length != 0) {
 			address.setNum(arrayAdress[2]);
 			address.setAddress(arrayAdress[3]);
-			address.setCity(arrayAdress[4]);
-			address.setCountry(arrayAdress[5]);
+			address.setZipCode(arrayAdress[4]);			
+			address.setCity(arrayAdress[5]);
+			address.setCountry(arrayAdress[6]);
 		}
 		return address;
 	}

@@ -34,7 +34,7 @@
 		})
 		.state('shipping.conclusion', {
 			parent:'shipping',
-			url: 'choice/conclusion',
+			url: '/conclusion',
 			data: {
 				authorities: ['ROLE_USER'],
 				pageTitle: 'wsLivraisonApp.global.shipping.title'

@@ -62,7 +62,7 @@ public class WineOrderResouceTest {
 	private MockMvc restMockMvc;
 
 	private static String urlWineEncoded 
-		= "XzE6cm9tYW5lJjExMjUwJjJfdG90YWw6MjI1MDFfaWRPcmRlcjo4MjU5Njk2OTZfY3VzdG9tZXI6Um9uYW4mQm9uZCYyJnJ1ZSRkZSRsYSRwYWl4Jkd1aW5nYW1wJkZyYW5jZQ==";
+		= "XzE6cm9tYW5lJjExMjUwJjJfdG90YWw6MjI1MDFfaWRPcmRlcjoxOTQzOTMyMjBfY3VzdG9tZXI6Um9uYW4mQm9uZCYyJnJ1ZSRkZSRsYSRwYWl4JjIyMjAwJkd1aW5nYW1wJkZyYW5jZQ==";
 	
 	@Before
 	public void setup() {
