@@ -50,8 +50,8 @@
 		</div>
 		<div class="col-sm-6 col-md-3">
 			<div class="form-group">
-				<label for="city">City</label> <input type="text" class="form-control"
-					id="city" ng-model="vm.address.city" required>
+				<label for="city">City</label> <input type="text"
+					class="form-control" id="city" ng-model="vm.address.city" required>
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-3">
@@ -168,8 +168,8 @@
 			<thead>
 				<tr>
 					<th><label class="control-label"
-								data-translate="wsLivraisonApp.command.dateDelivery"
-								for="field_dateDelivery">Date Delivery</label></th>
+						data-translate="wsLivraisonApp.command.dateDelivery"
+						for="field_dateDelivery">Date Delivery</label></th>
 					<th></th>
 					<th><span data-translate="wsLivraisonApp.postman.label">Label</span></th>
 					<th><span data-translate="wsLivraisonApp.postman.maxPrice">Max
@@ -178,18 +178,18 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="postman in vm.postmenCalculate track by postman.label">
-					<td><input id="field_dateDelivery" type="text" class="form-control"
-									name="dateDelivery" datetime-picker="{{dateformat}}"
-									ng-model="postman.dateDelivery"
-									is-open="vm.datePickerOpenStatus.dateDelivery">															
-					</td>
+				<tr
+					ng-repeat="postman in vm.postmenCalculate track by postman.label">
+					<td><input id="field_dateDelivery" type="text"
+						class="form-control" name="dateDelivery"
+						datetime-picker="{{dateformat}}" ng-model="postman.dateDelivery"
+						is-open="vm.datePickerOpenStatus.dateDelivery"></td>
 					<td><span class="input-group-btn">
 							<button type="button" class="btn btn-default"
 								ng-click="vm.openCalendar('dateDelivery')">
-									<i class="glyphicon glyphicon-calendar"></i>
+								<i class="glyphicon glyphicon-calendar"></i>
 							</button>
-						</span>	</td>
+					</span></td>
 					<td>{{postman.label}}</td>
 					<td>{{postman.maxPrice}}</td>
 					<td class="text-right">
@@ -199,10 +199,10 @@
 								<span class="glyphicon glyphicon-eye-open"></span> <span
 									class="hidden-sm-down" data-translate="entity.action.view"></span>
 							</button>
-							<button type="submit" ui-sref="postman.edit({id:postman.id})"
+							<button type="submit" ng-click="vm.chooseShipping($index)"
 								class="btn btn-primary btn-sm">
 								<span class="glyphicon glyphicon-pencil"></span>
-								<!--                                 <span class="hidden-sm-down" data-translate="entity.action.edit"></span> -->
+								<!--  <span class="hidden-sm-down" data-translate="entity.action.edit"></span> -->
 								<span class="hidden-sm-down">choose</span>
 							</button>
 							<button type="submit" ui-sref="postman.delete({id:postman.id})"
@@ -220,6 +220,18 @@
 <!-- /RESULT ESTIMATE -->
 
 <!-- Confirm locations on google map -->
-<h2>Confirm locations</h2>
-<div class="row"></div>
+<div class="top-buffer20 btnMidle">
+	<div ng-show="vm.started" ng-cloak>
+		<div class="top-buffer20">
+			<button type="submit" ui-sref="shipping.conclusion"
+				 ng-class="{'btn btn-primary btn-sm': vm.started, 'btn btn-danger btn-sm': !vm.started}">
+				<span class="glyphicon glyphicon-ok-sign"></span> <span
+					class="hidden-sm-down"><b>CONFIRM<b></b></span>
+			</button>
+		</div>
+	</div>
+</div>
+
+
+
 

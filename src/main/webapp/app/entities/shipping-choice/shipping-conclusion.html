@@ -1,0 +1,169 @@
+<!-- OVERVIEW SHIPPING CHOICE -->
+<div class="row top-buffer20" ng-show="!vm.validated">
+	<h2>
+		<b>Shipping Overview</b>
+	</h2>
+	<div class="top-buffer justifyText">
+		<h4>
+			You choose to be delivered by <b>{{
+				vm.postmen[vm.choosenShipping].label }} </b> for a total of <b>{{
+				vm.postmen[vm.choosenShipping].maxPrice }} €</b>.
+		</h4>
+		<h4>
+			You will be receiving your package approximatively the <b> {{
+				vm.postmenCalculate[vm.choosenShipping].dateDelivery |
+				date:'yyyy-MM-dd' }} </b> around <b>{{
+				vm.postmenCalculate[vm.choosenShipping].dateDelivery.getHours() }}
+				AM</b> at the address <b>{{ vm.address.num }} {{ vm.address.address
+				}} {{ vm.address.city }} ({{ vm.address.country }}) </b> by one of our
+			postmen.
+		</h4>
+		<h2 class="top-buffer20">
+			<b>Tracking Event Descriptions</b>
+		</h2>
+		<h4 class="top-buffer">Shipment movement information is captured
+			each time a tracking label is scanned in our system, from the time
+			the label is created until the shipment is delivered. Some of the
+			scans and other events that occur throughout the shipment's journey
+			are defined below. Shipments may travel through multiple facilities
+			and by different modes of transportation, such as tractor-trailers,
+			airplanes, trains, and ocean vessels.</h4>
+		<h4>If your shipment is expected to be in transit for more than a
+			day between tracking scans, we will display the day and date of the
+			Next Expected Tracking Event in the Shipment Progress area. This
+			message does not mean that your shipment is behind schedule or
+			stopped moving; it simply means that the tracking label might not be
+			scanned for a while. We display the Next Expected Tracking Event so
+			you can rest assured that your shipment is still moving even though
+			no new tracking scans may appear for a while.</h4>
+	</div>
+	<!-- Confirm locations on google map -->
+	<div class="top-buffer">
+		<h2>
+			<b>Confirm locations</b>
+		</h2>
+		<div class="top-buffer">
+			<div my-map=""></div>
+		</div>
+	</div>
+
+	<!-- validation shipping -->
+	<div class="top-buffer btnMidle">
+		<div ng-cloak>
+			<div class="top-buffer20">
+				<button type="submit" ng-click="vm.showDetailTerms()"
+					class="btn btn-primary btn-sm">
+					<span class="glyphicon glyphicon-ok-sign"></span> <span
+						class="hidden-sm-down"><b>VALIDATE<b></b></span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- TERMS USE -->
+<div class="row top-buffer20" ng-show="vm.validated">
+	<h1>Packaging/Shipping Terms and Conditions of Use</h1>
+
+	<p class="top-buffer20 justifyText">The following terms and
+		conditions (the &quot;Terms and Conditions&quot;) govern your use of
+		this web site, and any content made available from or through this web
+		site, including any subdomains thereof (the &quot;Web Site&quot;). The
+		Web Site is made available by OnWineTeam Inc. (&quot;OnWineTeam.&quot;
+		or &quot;we&quot; or &quot;us&quot;). We may change the Terms and
+		Conditions from time to time, at any time without notice to you, by
+		posting such changes on the Web Site. BY USING THE WEB SITE, YOU
+		ACCEPT AND AGREE TO THESE TERMS AND CONDITIONS AS APPLIED TO YOUR USE
+		OF THE WEB SITE. If you do not agree to these Terms and Conditions,
+		you may not access or otherwise use the Web Site.</p>
+
+	<ol class="olTermsUse">
+		<li>
+			<h4>Proprietary Rights.</h4>
+			<p class="justifyText">As between you and OnWineTeam.,
+				OnWineTeam. owns, solely and exclusively, all rights, title and
+				interest in and to the Web Site, all the content (including, for
+				example, audio, photographs, illustrations, graphics, other visuals,
+				video, copy, text, software, titles, Shockwave files, etc.), code,
+				data and materials thereon, the look and feel, design and
+				organization of the Web Site, and the compilation of the content,
+				code, data and materials on the Web Site, including but not limited
+				to any copyrights, trademark rights, patent rights, database rights,
+				moral rights, sui generis rights and other intellectual property and
+				proprietary rights therein. Your use of the Web Site does not grant
+				to you ownership of any content, code, data or materials you may
+				access on or through the Web Site.</p>
+		</li>
+
+		<li>
+			<h4>Limited License.</h4>
+			<p class="justifyText">You may access and view the content on the
+				Web Site on your computer or other device and, unless otherwise
+				indicated in these Terms and Conditions or on the Web Site, make
+				single copies or prints of the content on the Web Site for your
+				personal, internal use only. Use of the Web Site and the services
+				offered on or through the Web Site, are only for your personal,
+				non-commercial use.</p>
+		</li>
+
+		<li>
+			<h4>Prohibited Use.</h4>
+			<p class="justifyText">Any commercial or promotional
+				distribution, publishing or exploitation of the Web Site, or any
+				content, code, data or materials on the Web Site, is strictly
+				prohibited unless you have received the express prior written
+				permission from authorized personnel of OnWineTeam. or the otherwise
+				applicable rights holder. Other than as expressly allowed herein,
+				you may not download, post, display, publish, copy, reproduce,
+				distribute, transmit, modify, perform, broadcast, transfer, create
+				derivative works from, sell or otherwise exploit any content, code,
+				data or materials on or available through the Web Site. You further
+				agree that you may not alter, edit, delete, remove, otherwise change
+				the meaning or appearance of, or repurpose, any of the content,
+				code, data, or other materials on or available through the Web Site,
+				including, without limitation, the alteration or removal of any
+				trademarks, trade names, logos, service marks, or any other
+				proprietary content or proprietary rights notices. You acknowledge
+				that you do not acquire any ownership rights by downloading any
+				copyrighted material from or through the Web Site. If you make other
+				use of the Web Site, or the content, code, data or materials thereon
+				or available through the Web Site, except as otherwise provided
+				above, you may violate copyright and other laws of the United
+				States, other countries, as well as applicable state laws and may be
+				subject to liability for such unauthorized use.</p>
+		</li>
+
+<!-- 		<li> -->
+<!-- 			<h4>Trademarks.</h4> -->
+<!-- 			<p class="justifyText">The trademarks, logos, service marks and -->
+<!-- 				trade names (collectively the &quot;Trademarks&quot;) displayed on -->
+<!-- 				the Web Site or on content available through the Web Site are -->
+<!-- 				registered and unregistered Trademarks of OnWineTeam. and others and -->
+<!-- 				may not be used in connection with products and/or services that are -->
+<!-- 				not related to, associated with, or sponsored by their rights -->
+<!-- 				holders that are likely to cause customer confusion, or in any -->
+<!-- 				manner that disparages or discredits their rights holders. All -->
+<!-- 				Trademarks not owned by OnWineTeam. that appear on the Web Site or -->
+<!-- 				on or through the Web Site's services, if any, are the property of -->
+<!-- 				their respective owners. Nothing contained on the Web Site should be -->
+<!-- 				construed as granting, by implication, estoppel, or otherwise, any -->
+<!-- 				license or right to use any Trademark displayed on the Web Site -->
+<!-- 				without the written permission of OnWineTeam. or the third party -->
+<!-- 				that may own the applicable Trademark. Your misuse of the Trademarks -->
+<!-- 				displayed on the Web Site or on or through any of the Web Site's -->
+<!-- 				services is strictly prohibited.</p> -->
+<!-- 		</li> -->
+	</ol>
+	<div class="top-buffer btnMidle">
+		<div ng-cloak>
+			<div class="top-buffer20">
+				<button type="submit" ng-click="vm.redirectWineApp()"
+					class="btn btn-primary btn-sm">
+					<span class="glyphicon glyphicon-ok-sign"></span> <span
+						class="hidden-sm-down"><b>ACCEPT & REDIRECT<b></b></span> <span
+						class="glyphicon glyphicon-ok-sign"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

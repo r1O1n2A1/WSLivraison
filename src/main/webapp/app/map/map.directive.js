@@ -1,8 +1,8 @@
 (function () {
 	'use strict';
 	angular
-		.module('wsLivraisonApp')
-		.directive('myMap', myMap);
+	.module('wsLivraisonApp')
+	.directive('myMap', myMap);
 
 	myMap.$inject = [];
 
@@ -14,9 +14,10 @@
 			var markers = [];
 
 			// map config
+			var myLatlng = new google.maps.LatLng(48.85, 2.352);
 			var mapOptions = {
-					center: new google.maps.LatLng(50, 2),
-					zoom: 4,
+					center: myLatlng,
+					zoom: 5,
 					mapTypeId: google.maps.MapTypeId.ROADMAP,
 					scrollwheel: false
 			};
@@ -25,6 +26,7 @@
 			function initMap() {
 				if (map === void 0) {
 					map = new google.maps.Map(element[0], mapOptions);
+					google.maps.event.trigger(map, 'resize');
 				}
 			}    
 
@@ -58,9 +60,8 @@
 			// show the map and place some markers
 			initMap();
 
-			setMarker(map, new google.maps.LatLng(51.508515, -0.125487), 'London', 'Just some content');
-			setMarker(map, new google.maps.LatLng(52.370216, 4.895168), 'Amsterdam', 'More content');
-			setMarker(map, new google.maps.LatLng(48.856614, 2.352222), 'Paris', 'Text here');
+			setMarker(map, new google.maps.LatLng(45.1333 , -0.6667), 'Blaye', 'Shipping site');
+			setMarker(map, new google.maps.LatLng(48.856614, 2.352222), 'Paris', 'Capital France');
 		};
 
 		return {

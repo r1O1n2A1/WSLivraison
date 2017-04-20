@@ -26,7 +26,7 @@
 				country: 'France',
 				city: 'Blaye'
 		}
-		var postmen =  Postman.query();
+		vm.postmen =  Postman.query();
 		vm.distance = 0;
 		vm.estimated = false;
 		vm.country_list = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas"
@@ -102,12 +102,10 @@
 								to = sortedArray;
 								//2) calculate distance
 								vm.distance = getDistance(from, to)/1000; //[km]
-								console.log(vm.distance);
 								//3) define postmen
 								var coeff = definePostmenCoeffDate();
-
-								if (postmen) {
-									postmen.forEach(function(res){
+								if (vm.postmen) {
+									vm.postmen.forEach(function(res){
 										var temp = res.maxPrice;
 										res.dateDelivery = randomDate(new Date(),
 												new Date(+(new Date()) + Math.floor(Math.random()*1000000000)));
@@ -186,7 +184,6 @@
 				var coeff = 1;
 				if(vm.distance > 0 && vm.distance <= 1000) {
 					// nothing
-					vm.date
 				} else if (vm.distance > 1000 && vm.distance <= 2000) {
 					coeff = 2;
 				} else if (vm.distance > 2000 && vm.distance <= 4000) {
@@ -217,7 +214,15 @@
 				}
 			}
 		}
-			
+		vm.choosenShipping = $window.localStorage.getItem('indexChoosenShipping');
+		vm.started = false;	
+		vm.chooseShipping = function(index) {			
+			if(vm.distance) {
+				$window.localStorage.setItem('indexChoosenShipping',index);
+				defineShippingMethod(vm.distance);
+			}			
+			vm.started = true;
+		}
 
 		// -------- /END SHIPPING --------- //
 
@@ -243,7 +248,22 @@
 		function openCalendar(date) {
 			vm.datePickerOpenStatus[date] = true;
 		}
+		
+		
+		//---- PART VALIDATION PAGE -----//
+		/* should be externalized in another controller */
+		
+		vm.validated = false;
+		vm.showDetailTerms = function() {
+			$window.scrollTo(0, 0);
+			vm.validated = true;
+			
+		}
+		
+		vm.redirectWineApp = function() {
+			window.location.replace('http://www.google.fr/' + vm.address.id + '-' + vm.postmen[vm.choosenShipping].maxPrice );
+		}
+		
+		// -------------END CONTROLLER ----------//
 	}
-
-	// -------------END CONTROLLER ----------//
 })();
