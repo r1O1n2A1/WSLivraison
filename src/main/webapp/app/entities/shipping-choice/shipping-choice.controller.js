@@ -102,7 +102,6 @@
 								to = sortedArray;
 								//2) calculate distance
 								vm.distance = getDistance(from, to)/1000; //[km]
-								console.log(vm.distance);
 								//3) define postmen
 								var coeff = definePostmenCoeffDate();
 								if (vm.postmen.length && vm.postmenCalculate.length == 0) {
@@ -196,7 +195,7 @@
 			}
 		}
 		
-		vm.calculateCost();
+//		vm.calculateCost();
 		vm.estimate = function() {
 			if (vm.postmenCalculate.length) {				
 				if(vm.estimated) {
@@ -264,7 +263,7 @@
 		}
 		
 		vm.redirectWineApp = function() {
-			window.location.replace('http://localhost:8081/Wine-Web/pages/checkout3payment.jsf' + vm.address.id + '-' + vm.postmen[vm.choosenShipping].maxPrice );
+			window.location.replace('http://localhost:8081/Wine-Web/pages/checkout3payment.jsf');
 		}
 		
 		// -------------END CONTROLLER ----------//
