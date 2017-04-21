@@ -37,7 +37,7 @@ import fr.afcepf.atod.shipping.web.rest.util.HeaderUtil;
 public class WineOrderResource {
 	private final Logger logger = 
 			LoggerFactory.getLogger(WineOrderResource.class);
-	public static final String SOAP_WS_SHIPPING = "http://localhost:28080/SOAPShipping/";
+	public static final String SOAP_WS_SHIPPING = "http://192.168.102.183:28080/SOAPShipping/";
 
 	private final CommandMapper commandMapper;
 	private final CommandRepository commandRepository;

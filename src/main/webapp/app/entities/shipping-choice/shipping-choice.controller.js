@@ -263,7 +263,7 @@
 		}
 		
 		vm.redirectWineApp = function() {
-			window.location.replace('http://localhost:8081/Wine-Web/pages/checkout3payment.jsf');
+			window.location.replace('http://192.168.102.183:8081/Wine-Web/pages/checkout3payment.jsf');
 		}
 		
 		// -------------END CONTROLLER ----------//
