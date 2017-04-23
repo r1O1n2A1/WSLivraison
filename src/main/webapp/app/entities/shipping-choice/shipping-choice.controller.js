@@ -78,16 +78,50 @@
 								Address.get({id: vm.command.addressId}).$promise.then(
 										function(result){
 											vm.address = result;
+										}).then(function(result){
+											var from = [];
+											var to = [];
+											// estimate distance + cost with postmen
+											//1) find lat/long for each shipping FROM/TO
+											calculateDistanceGoogleAPI(vm.fromAddress).then(
+													function(sortedArray) {				
+														from = sortedArray;
+														if (from[0] && from[1]) {
+															calculateDistanceGoogleAPI(vm.address).then(function(sortedArray){
+																to = sortedArray;
+																//2) calculate distance
+																vm.distance = getDistance(from, to)/1000; //[km]
+																//3) define postmen
+																var coeff = definePostmenCoeffDate();
+																if ($window.localStorage.getItem('indexChoosenShipping') !== 0 &&
+																		vm.postmen.length && vm.postmenCalculate.length == 0) {
+																	vm.postmen.forEach(function(res){
+																		var temp = res.maxPrice;
+																		res.dateDelivery = randomDate(new Date(),
+																				new Date(+(new Date()) + Math.floor(Math.random()*1000000000)));
+																		res.maxPrice = temp*coeff;
+																		vm.postmenCalculate.push(res);
+																	});
+																}
+
+															})
+														}
+													}, function (err) {
+														console.error('Uh oh! An error occurred!', err);
+													});
 										});
 							}
 						});
 			} 
 		}	
 
+		vm.empty = function isEmpty(obj) {
+			return Object.keys(obj).length === 0;
+		}
+
 		// -------- START SHIPPING --------- //
 
 		var geocoder = new google.maps.Geocoder();
-
 		vm.calculateCost = function () {
 			var from = [];
 			var to = [];
@@ -97,14 +131,14 @@
 					function(sortedArray) {				
 						from = sortedArray;
 						if (from[0] && from[1]) {
-							
 							calculateDistanceGoogleAPI(vm.address).then(function(sortedArray){
 								to = sortedArray;
 								//2) calculate distance
 								vm.distance = getDistance(from, to)/1000; //[km]
 								//3) define postmen
 								var coeff = definePostmenCoeffDate();
-								if (vm.postmen.length && vm.postmenCalculate.length == 0) {
+								if ($window.localStorage.getItem('indexChoosenShipping') !== 0 &&
+										vm.postmen.length && vm.postmenCalculate.length == 0) {
 									vm.postmen.forEach(function(res){
 										var temp = res.maxPrice;
 										res.dateDelivery = randomDate(new Date(),
@@ -194,28 +228,14 @@
 				return coeff;
 			}
 		}
-		
+
 //		vm.calculateCost();
 		vm.estimate = function() {
-			if (vm.postmenCalculate.length) {				
-				if(vm.estimated) {
-					vm.postmenCalculate = [];
-					vm.calculateCost();
-					vm.estimated = false;
-				} else {
-					vm.estimated = true;
-				}
-			} else {
-				vm.postmenCalculate = [];
-				if(vm.estimated) {
-					vm.calculateCost();
-					vm.estimated = false;
-				} else {
-					vm.calculateCost();
-					vm.estimated = true;
-				}
+			if (vm.postmenCalculate) {
+				vm.estimated = true;
 			}
 		}
+
 		vm.choosenShipping = $window.localStorage.getItem('indexChoosenShipping');
 		vm.started = false;	
 		vm.chooseShipping = function(index) {			
@@ -229,43 +249,43 @@
 		// -------- /END SHIPPING --------- //
 
 		// ----- CALANDAR PART ----------//
-		
+
 		vm.datePickerOpenStatus = {};
 		vm.openCalendar = openCalendar;
-			
+
 		vm.datePickerOpenStatus.dateOrder = false;
 		vm.datePickerOpenStatus.dateTaken = false;
 		vm.datePickerOpenStatus.dateShipping = false;
 		vm.datePickerOpenStatus.dateDelivery = false;
-		
+
 		function randomDate(start, end) {
 			var date =  new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
 			date.setHours(Math.floor(Math.random() * 4) + 8,
 					Math.floor(Math.random() * 10) + 6,
 					Math.floor(Math.random() * 4) + 8,
 					Math.floor(Math.random() * 4) + 8);
-		    return date;
+			return date;
 		}
-		
+
 		function openCalendar(date) {
 			vm.datePickerOpenStatus[date] = true;
 		}
-		
-		
+
+
 		//---- PART VALIDATION PAGE -----//
 		/* should be externalized in another controller */
-		
+
 		vm.validated = false;
 		vm.showDetailTerms = function() {
 			$window.scrollTo(0, 0);
 			vm.validated = true;
-			
+
 		}
-		
+
 		vm.redirectWineApp = function() {
-			window.location.replace('http://192.168.102.183:8081/Wine-Web/pages/checkout3payment.jsf');
+			window.location.replace('http://localhost:8081/Wine-Web/pages/checkout3payment.jsf');
 		}
-		
+
 		// -------------END CONTROLLER ----------//
 	}
 })();

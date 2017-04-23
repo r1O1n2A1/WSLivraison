@@ -147,8 +147,8 @@ a.mask {
 }
 
 .padding-right50 {
-	position: absolute;
 	right: 10%;
+	text-align: center;
 }
 
 /* --------------------------------
