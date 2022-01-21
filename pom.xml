@@ -6,7 +6,7 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <groupId>org.springframework.boot</groupId>
         <version>1.5.2.RELEASE</version>
-        <relativePath />
+        <relativePath/>
     </parent>
 
     <groupId>fr.afcepf.atod.shipping</groupId>
@@ -35,7 +35,7 @@
         <jacoco-maven-plugin.version>0.7.9</jacoco-maven-plugin.version>
         <java.version>1.8</java.version>
         <javassist.version>3.21.0-GA</javassist.version>
-        <jhipster.server.version>1.1.2</jhipster.server.version>
+        <jhipster.server.version>1.2.0</jhipster.server.version>
         <jjwt.version>0.7.0</jjwt.version>
         <liquibase-hibernate5.version>3.6</liquibase-hibernate5.version>
         <liquibase-slf4j.version>2.0.0</liquibase-slf4j.version>
@@ -53,8 +53,8 @@
         <node.version>v6.10.0</node.version>
         <npm.version>4.3.0</npm.version>
         <!-- These remain empty unless the corresponding profile is active -->
-        <profile.no-liquibase />
-        <profile.swagger />
+        <profile.no-liquibase/>
+        <profile.swagger/>
         <!-- Sonar properties -->
         <project.testresult.directory>${project.build.directory}/test-results</project.testresult.directory>
         <prometheus-simpleclient.version>0.0.20</prometheus-simpleclient.version>
@@ -372,7 +372,7 @@
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore />
+                                        <ignore/>
                                     </action>
                                 </pluginExecution>
                                 <pluginExecution>
@@ -388,7 +388,7 @@
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore />
+                                        <ignore/>
                                     </action>
                                 </pluginExecution>
                             </pluginExecutions>
