@@ -6,7 +6,7 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <groupId>org.springframework.boot</groupId>
         <version>1.5.2.RELEASE</version>
-        <relativePath />
+        <relativePath/>
     </parent>
 
     <groupId>fr.afcepf.atod.shipping</groupId>
@@ -27,7 +27,7 @@
         <commons-lang.version>3.5</commons-lang.version>
         <docker-maven-plugin.version>0.4.13</docker-maven-plugin.version>
         <!-- Overridden to get metrics-jcache -->
-        <dropwizard-metrics.version>3.2.2</dropwizard-metrics.version>
+        <dropwizard-metrics.version>4.0.0</dropwizard-metrics.version>
         <frontend-maven-plugin.version>1.3</frontend-maven-plugin.version>
         <hibernate.version>5.2.8.Final</hibernate.version>
         <hikaricp.version>2.6.0</hikaricp.version>
@@ -53,8 +53,8 @@
         <node.version>v6.10.0</node.version>
         <npm.version>4.3.0</npm.version>
         <!-- These remain empty unless the corresponding profile is active -->
-        <profile.no-liquibase />
-        <profile.swagger />
+        <profile.no-liquibase/>
+        <profile.swagger/>
         <!-- Sonar properties -->
         <project.testresult.directory>${project.build.directory}/test-results</project.testresult.directory>
         <prometheus-simpleclient.version>0.0.20</prometheus-simpleclient.version>
@@ -372,7 +372,7 @@
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore />
+                                        <ignore/>
                                     </action>
                                 </pluginExecution>
                                 <pluginExecution>
@@ -388,7 +388,7 @@
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore />
+                                        <ignore/>
                                     </action>
                                 </pluginExecution>
                             </pluginExecutions>
